@@ -4,8 +4,8 @@ El objetivo de este proyecto es desarrollar una libreria que permita resolver di
 
 # Desarrolladores
 
-Jean Carlo Jimenez Giraldo  Estudiante Universidad Nacional de Colombia Sede Medellín
+Jean Carlo Jimenez Giraldo  Estudiante Ingenieria Industrial Universidad Nacional de Colombia Sede Medellín
 
-Elkin Rodriguez Velasquez Profesor Universidad Nacional de Colombia Sede Medellín
+Elkin Rodriguez Velasquez Profesor Ingenieria Industrial Universidad Nacional de Colombia Sede Medellín
 
 

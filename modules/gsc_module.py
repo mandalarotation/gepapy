@@ -7,9 +7,20 @@ import math
 
 class GSC():
   def __init__():
+    """
+    GSC es la clase principal de GenSchedulingCuda la cual en un futuro contendra todos los modulos y metodos
+    necesarios para resolver diversos problemas de algoritmos geneticos, por el momento solo cuenta con 
+    un modulo para flow-shop que cuenta con los metodos mas fundamentales de un algoritmo genetico, la generación de 
+    la población, el cruce la mutación y el calculo del fitness, todos ellos están paralelizados con CUDA.
+    """
     None
 
+
   def create_object_FlowShop(pop_size,crom_size,processing_time,due_date,weights,crossover_mutation_rate,select_mutation_rate):
+    """
+    Es un metodo de la clase principal GSC cuyo objetivo es gestionar las subclases o modulos según el problema tipo de problema que se 
+    requiera resolver, por el momento solamente inciailiza objetos a partir de la clase hija FlowShop
+    """
     p=processing_time
     d=due_date
     w=weights
@@ -19,26 +30,37 @@ class GSC():
 
 
   class FlowShop():
-
+    """
+    Es la clase que crea objetos de tipo Flow_Shop los cuales luego serán transformados por los metodos existentes en la subclase GeneralFunctions
+    """
     def __init__(self,pop_size,crom_size,processing_time,due_date,weights,crossover_mutation_rate,select_mutation_rate):
 
-        self.pop_size = pop_size
-        self.crom_size = crom_size
-        self.processing_time = cp.repeat(cp.expand_dims(cp.array(processing_time,dtype=cp.float32),axis=0),self.pop_size ,axis=0)  #array 1D
+        self.pop_size = pop_size   # parametro que define el tamano de la población
+        self.crom_size = crom_size  # parametro que define el tamano de los cromosomas
+        self.processing_time = cp.repeat(cp.expand_dims(cp.array(processing_time,dtype=cp.float32),axis=0),self.pop_size ,axis=0)  #array 1D  
         self.due_date = cp.repeat(cp.expand_dims(cp.array(due_date,dtype=cp.float32),axis=0),self.pop_size  ,axis=0)  #array 1D
         self.weights = cp.repeat(cp.expand_dims(cp.array(weights,dtype=cp.float32),axis=0),self.pop_size  ,axis=0)     #array 1D
-        self.population = GSC.GeneralFunctions.gen_matrix_permutations(self)
-        self.crossover_mutation_rate = crossover_mutation_rate
-        self.select_mutation_rate = select_mutation_rate
-        self.fitness = cp.zeros([self.pop_size])
-        self.evolution_list = []
+        self.population = GSC.GeneralFunctions.gen_matrix_permutations(self)  # Se usa el metodo gen_matrix_permutations de la subclase GeneralFunctions para crear la problación inicial
+        self.crossover_mutation_rate = crossover_mutation_rate  # parametro que define la tasa de mutación
+        self.select_mutation_rate = select_mutation_rate  # parametro que difene cuantos cromosomas de la población se mutarán
+        self.fitness = cp.zeros([self.pop_size])  # se inicializa un array 1D de ceros que mas adelante será llenado con los fitness de cada cromosoma
+        self.evolution_list = []  
 
   class GeneralFunctions():
+
+    """
+    Es una subclase o clase hija de la clase principal GSC y es accesible por los objetos creados a partir de la clase FlowShop
+    """
 
     def __init__():
       None
 
     def gen_matrix_permutations(OBJ):
+      """
+      Implementacion en cuda que permite generar poblaciones que estan representadas 
+      por matrices donde cada fila corresponde a un cromosona y las columnas estan asociadas con 
+      el tamano del cromosoma.
+      """
       @cuda.jit
       def gen_permutations(X,AL):
         row = cuda.grid(1)
@@ -68,6 +90,10 @@ class GSC():
       return X
 
     def special_gen_matrix_permutations(rows,cols):
+      """
+      Una variante del generador de poblaciones que puede ser implementado para algunos
+      casos en un futuro
+      """
       @cuda.jit
       def gen_permutations(X,AL):
         row = cuda.grid(1)
@@ -94,6 +120,9 @@ class GSC():
       return X,AL
 
     def calculate_fitness(OBJ):
+      """
+      Metodo que permite calcular el fitnes de manera paralela para toda la población
+      """
       @cuda.jit
       def fitness(x,y,p,d,w):
         row = cuda.grid(1)
@@ -131,6 +160,9 @@ class GSC():
       return OBJ
 
     def sort_population(OBJ):
+      """
+      Metodo que permite organizar la población de mayor a menor desempeno según si fitness obtenido
+      """
 
       @cuda.jit
       def sort(x,z,o):
@@ -170,7 +202,10 @@ class GSC():
       return OBJ
 
     def crossover_population(OBJ):
-
+      """
+      Metodo que realiza el cruce de dos cromosomas, funciona, pero todavia esta en fase experimental 
+      y puede ser mejorado con el tiempo
+      """
       @cuda.jit
       def crossover_one(parent_one,cross_one):
         row,col = cuda.grid(2)
@@ -240,6 +275,9 @@ class GSC():
       return OBJ
     
     def mutation(OBJ):
+      """
+      Metodo que realiza mutaciones aleatorias en cierto cromosomas escogidos.
+      """
       @cuda.jit
       def mutation(x,al,p):
         row,col = cuda.grid(2)
@@ -276,6 +314,10 @@ class GSC():
       return OBJ
 
     def migration(OBJ):
+      """
+      Método que se vale el generador de poblaciones para generar nuevos individuos en la población
+      y evitar el sindrome de las galapagos.
+      """
       x = OBJ.population
       mutation_rate = OBJ.crossover_mutation_rate
       parent = x[0:int(x.shape[0]*mutation_rate),:]

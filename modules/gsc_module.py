@@ -10,28 +10,28 @@ class GSC():
     """
     GSC es la clase principal de GenSchedulingCuda la cual en un futuro contendra todos los modulos y metodos
     necesarios para resolver diversos problemas de algoritmos geneticos, por el momento solo cuenta con 
-    un modulo para flow-shop que cuenta con los metodos mas fundamentales de un algoritmo genetico, la generación de 
+    un modulo para single-machine que cuenta con los metodos mas fundamentales de un algoritmo genetico, la generación de 
     la población, el cruce la mutación y el calculo del fitness, todos ellos están paralelizados con CUDA.
     """
     None
 
 
-  def create_object_FlowShop(pop_size,crom_size,processing_time,due_date,weights,crossover_mutation_rate,select_mutation_rate):
+  def create_object_SingleMachine(pop_size,crom_size,processing_time,due_date,weights,crossover_mutation_rate,select_mutation_rate):
     """
     Es un metodo de la clase principal GSC cuyo objetivo es gestionar las subclases o modulos según el problema tipo de problema que se 
-    requiera resolver, por el momento solamente inciailiza objetos a partir de la clase hija FlowShop
+    requiera resolver, por el momento solamente inciailiza objetos a partir de la clase hija SingleMachine
     """
     p=processing_time
     d=due_date
     w=weights
-    OBJ = GSC.FlowShop(pop_size,crom_size,p,d,w,crossover_mutation_rate,select_mutation_rate)
+    OBJ = GSC.SingleMachine(pop_size,crom_size,p,d,w,crossover_mutation_rate,select_mutation_rate)
     return OBJ
 
 
 
-  class FlowShop():
+  class SingleMachine():
     """
-    Es la clase que crea objetos de tipo Flow_Shop los cuales luego serán transformados por los metodos existentes en la subclase GeneralFunctions
+    Es la clase que crea objetos de tipo SingleMachine los cuales luego serán transformados por los metodos existentes en la subclase GeneralFunctions
     """
     def __init__(self,pop_size,crom_size,processing_time,due_date,weights,crossover_mutation_rate,select_mutation_rate):
 

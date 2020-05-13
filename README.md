@@ -10,4 +10,6 @@ Jean Carlo Jimenez Giraldo  Estudiante Ingenieria Industrial Universidad Naciona
 
 Elkin Rodriguez Velasquez Profesor Ingenieria Industrial Universidad Nacional de Colombia Sede Medellín
 
+Yubar Daniel Marin Benjumea Estadistica Universidad Nacional de Colombia Sede Medellín
+
 

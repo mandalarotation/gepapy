@@ -37,7 +37,7 @@ class Fitness():
       cuda.synchronize()
       fitness[blockspergrid, threadsperblock](x,y,p,d,w)
       cuda.synchronize()
-
+      print("aqui")
       self.fitness = y
 
       x = None

@@ -18,7 +18,7 @@ class Migration():
       parent = x[0:int(x.shape[0]*mutation_rate),:]
       rows = x.shape[0] - (int(x.shape[0]*mutation_rate) + int(int(x.shape[0]*mutation_rate)/2) + parent.shape[0])
       cols = self.crom_size
-      P,AL= GSC.GeneralFunctions.special_gen_matrix_permutations(10,cols)
+      P,AL= self._special_gen_matrix_permutations(10,cols)
       x[x.shape[0] - P.shape[0]:x.shape[0],:] = P
       self.population = x
       x = None 

@@ -15,10 +15,10 @@ class Main_Kernel(Pop_Init,Cross,Fitness,Migration,Mutation):
         return 
     
     def _main_pop_init(self):
-      _kernel_gen_matrix_permutations()
+      self._kernel_gen_matrix_permutations()
 
     def _main_cross(self):
-      _kernel_crossover_population()
+      self._kernel_crossover_population()
     
     def _main_migration(self):
       self._kernel_migration()

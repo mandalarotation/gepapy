@@ -9,7 +9,7 @@ class Cross():
         None
 
 
-    def crossover_population(self):
+    def _kernel_crossover_population(self):
       """
       Metodo que realiza el cruce de dos cromosomas, funciona, pero todavia esta en fase experimental 
       y puede ser mejorado con el tiempo

@@ -1,8 +1,14 @@
+from __future__ import division
+from numba import cuda
+import numpy as np
+import cupy as cp
+import math
+
 class Pop_Init():
     def __init__(self):
         None
     
-    def _gen_matrix_permutations(self):
+    def _kernel_gen_matrix_permutations(self):
       """
       Implementacion en cuda que permite generar poblaciones que estan representadas 
       por matrices donde cada fila corresponde a un cromosona y las columnas estan asociadas con 
@@ -32,6 +38,7 @@ class Pop_Init():
       gen_permutations[blockspergrid, threadsperblock](X,AL) 
       cuda.synchronize()
 
-      AL = None
+      self.population = X
 
-      return X
+      AL = None
+      X = None

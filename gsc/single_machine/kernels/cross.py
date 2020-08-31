@@ -1,6 +1,13 @@
+from __future__ import division
+from numba import cuda
+import numpy as np
+import cupy as cp
+import math
+
 class Cross():
     def __init__(self):
         None
+
 
     def crossover_population(self):
       """
@@ -64,10 +71,11 @@ class Cross():
 
       x[int(x.shape[0]*crossover_rate):int(x.shape[0]*crossover_rate) + parent_one.shape[0],:] = z
 
+      self.population = x
+
+      x = None
       crossover_rate = None
       parents = None
       parent_one = None
       parent_two = None
       z = None
-
-      return x

@@ -1,8 +1,14 @@
+from __future__ import division
+from numba import cuda
+import numpy as np
+import cupy as cp
+import math
+
 class Migration():
     def __init__(self):
         None    
         
-    def migration(self):
+    def _kernel_migration(self):
       """
       Método que se vale el generador de poblaciones para generar nuevos individuos en la población
       y evitar el sindrome de las galapagos.
@@ -14,6 +20,7 @@ class Migration():
       cols = self.crom_size
       P,AL= GSC.GeneralFunctions.special_gen_matrix_permutations(10,cols)
       x[x.shape[0] - P.shape[0]:x.shape[0],:] = P
+      self.population = x
       x = None 
       mutation_rate = None
       parent = None 
@@ -21,4 +28,3 @@ class Migration():
       cols = None
       P = None 
       AL = None
-      return x

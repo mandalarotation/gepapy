@@ -3,9 +3,10 @@ from numba import cuda
 import numpy as np
 import cupy as cp
 import math
+from gsc.single_machine.kernels.main_kernel import Main_Kernel
 
 
-class SingleMachine():
+class SingleMachine(Main_Kernel):
     def __init__(self,pop_size,crom_size,processing_time,due_date,weights,crossover_mutation_rate,select_mutation_rate):
 
     self.pop_size = pop_size   # parametro que define el tamano de la población
@@ -18,4 +19,25 @@ class SingleMachine():
     self.select_mutation_rate = select_mutation_rate  # parametro que difene cuantos cromosomas de la población se mutarán
     self.fitness = cp.zeros([self.pop_size])  # se inicializa un array 1D de ceros que mas adelante será llenado con los fitness de cada cromosoma
     self.evolution_list = []  
+
+    def _pop_init(self):
+      self._main_pop_init()
+      
+    def cross(self):
+      self._main_cross()
+      return self
+
+    def fitness(self):
+      self._main_fitness()
+      return self
+
+    def migration(self):
+      self._main_migration()
+      return self
+    
+    def mutation(self):
+      self._kernel_mutation()
+      return self
+
+
 

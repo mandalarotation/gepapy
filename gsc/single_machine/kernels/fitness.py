@@ -1,8 +1,14 @@
+from __future__ import division
+from numba import cuda
+import numpy as np
+import cupy as cp
+import math
+
 class Fitness():
-    def __init__():
+    def __init__(self):
         None
 
-    def _calculate_fitness(self):
+    def _kernel_calculate_fitness(self):
       """
       Metodo que permite calcular el fitnes de manera paralela para toda la población
       """
@@ -32,7 +38,7 @@ class Fitness():
       fitness[blockspergrid, threadsperblock](x,y,p,d,w)
       cuda.synchronize()
 
-      fitness = y
+      self.fitness = y
 
       x = None
       y = None
@@ -40,9 +46,7 @@ class Fitness():
       d = None
       w = None
 
-      return fitness
-
-    def _sort_population(self):
+    def _kernel_sort_population(self):
       """
       Metodo que permite organizar la población de mayor a menor desempeno según si fitness obtenido
       """
@@ -72,8 +76,8 @@ class Fitness():
       sort[blockspergrid, threadsperblock](x,z,o)
       cuda.synchronize()
 
-      fitness = cp.sort(y)
-      population = z
+      self.fitness = cp.sort(y)
+      self.population = z
 
       y = None
       x = None
@@ -81,5 +85,3 @@ class Fitness():
       crom_size = None
       o = None
       z = None
-
-      return (fitness, population)

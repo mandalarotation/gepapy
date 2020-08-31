@@ -1,8 +1,14 @@
+from __future__ import division
+from numba import cuda
+import numpy as np
+import cupy as cp
+import math
+
 class Mutation():
-    def __init__():
+    def __init__(self):
         None
         
-    def mutation(self):
+    def _kernel_mutation(self):
       """
       Metodo que realiza mutaciones aleatorias en cierto cromosomas escogidos.
       """
@@ -32,10 +38,9 @@ class Mutation():
       cuda.synchronize()
 
       x[int(x.shape[0]*mutation_rate) + int(int(x.shape[0]*mutation_rate)/2):int(x.shape[0]*mutation_rate) + int(int(x.shape[0]*mutation_rate)/2) + parent.shape[0],:] = parent
-      
+      self.population = x
+
       x = None
       P = None
       AL = None
       parent = None
-
-      return x

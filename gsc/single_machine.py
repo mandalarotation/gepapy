@@ -32,47 +32,47 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
 
     def _set_n_machines(self,n_machines):
         if self._poulation != None:
-            None
+            self._n_machines = n_machines
         else:
             None
 
-    def _set_processing_time(self):
+    def _set_processing_time(self,processing_time):
+        if self._poulation != None:
+            self._processing_time = processing_time
+        else:
+            None
+
+    def _set_due_date(self,due_date):
+        if self._poulation != None:
+            self._due_date = due_date
+        else:
+            None
+    
+    def _set_weights(self,weights):
+        if self._poulation != None:
+            self._weights = weights
+        else:
+            None
+    
+    def _set_population(self,population):
+        if self._poulation != None:
+            self._poulation = population
+        else:
+            None
+
+    def _set_percent_cross(self,percent_cross):
         if self._poulation != None:
             None
         else:
             None
 
-    def _set_due_date(self):
+    def _set_percent_mutation(self,percent_mutation):
         if self._poulation != None:
             None
         else:
             None
     
-    def _set_weights(self):
-        if self._poulation != None:
-            None
-        else:
-            None
-    
-    def _set_population(self):
-        if self._poulation != None:
-            None
-        else:
-            None
-
-    def _set_percent_cross(self):
-        if self._poulation != None:
-            None
-        else:
-            None
-
-    def _set_percent_mutation(self):
-        if self._poulation != None:
-            None
-        else:
-            None
-    
-    def _set_fitness(self):
+    def _set_fitness(self,fitness):
         if self._poulation != None:
             None
         else:

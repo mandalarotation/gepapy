@@ -15,12 +15,12 @@ class MutationA0001():
         def mutationAC0001():
             @cuda.jit
             def kernel(X_AUX,AL,digits,repetitions,n_samples):
-            row = cuda.grid(1)
-            if row < n_samples:
-                for i in range(AL.shape[1]):
-                x_aux = X_AUX[row,int(AL[row,i,0])]
-                X_AUX[row,int(AL[row,i,0])] = X_AUX[row,int(math.ceil(AL[row,i,1]))]
-                X_AUX[row,int(AL[row,i,1])] = x_aux
+                row = cuda.grid(1)
+                if row < n_samples:
+                    for i in range(AL.shape[1]):
+                        x_aux = X_AUX[row,int(AL[row,i,0])]
+                        X_AUX[row,int(AL[row,i,0])] = X_AUX[row,int(math.ceil(AL[row,i,1]))]
+                        X_AUX[row,int(AL[row,i,1])] = x_aux
 
             x_dim_1 = digits*repetitions
 

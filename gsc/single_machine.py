@@ -21,32 +21,62 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         self._fitness = None
 
 
-    def set_n_samples(self):
-        None
+    def set_n_samples(self,n_samples):
+        if self._poulation != None:
+            self._n_samples = n_samples
+        else:
+            if n_samples < self._n_samples.shape[0]:
+                self._n_samples = self._n_samples[0:n_samples]
+            else:
+                None
 
-    def _set_n_machines(self):
-        None
+    def _set_n_machines(self,n_machines):
+        if self._poulation != None:
+            None
+        else:
+            None
 
     def _set_processing_time(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
 
     def _set_due_date(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
     
     def _set_weights(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
     
     def _set_population(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
 
     def _set_percent_cross(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
 
     def _set_percent_mutation(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
     
     def _set_fitness(self):
-        None
+        if self._poulation != None:
+            None
+        else:
+            None
 
     def get_permutationA0001(self):
         None

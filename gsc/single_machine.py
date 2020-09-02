@@ -14,69 +14,71 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         self._n_machines = self._set_n_machines(n_machines)
         self._processing_time = self._set_processing_time(processing_time)
         self._due_date = self._set_due_date(due_date)
-        self._weights = self._set_weights(weights)
-        self._poulation = self._set_population()
+        self._weights = self._set_weights(weights)        
         self._percent_cross = self._set_percent_cross(percent_cross)
         self._percent_mutation = self._set_percent_mutation(percent_mutation)
         self._fitness = None
+        self._poulation = self._set_population()
 
 
     def set_n_samples(self,n_samples):
-        if self._poulation == None:
-            return n_samples
-        else:
+        try:
+            type(self._population)
             if n_samples < self._n_samples.shape[0]:
-                self._n_samples = self._n_samples[0:n_samples]
+                self._n_samples = self._poulation[0:n_samples]
             else:
                 None
+        except NameError:
+            return n_samples
+
 
     def _set_n_machines(self,n_machines):
-        if self._poulation == None:
+        try:
+            type(self._poulation)
+        except NameError:
             return n_machines
-        else:
-            None
 
     def _set_processing_time(self,processing_time):
-        if self._poulation == None:
+        try:
+            type(self._poulation)
+        except NameError:
             return processing_time
-        else:
-            None
 
     def _set_due_date(self,due_date):
-        if self._poulation == None:
+        try:
+            type(self._poulation)
+        except NameError:
             return due_date
-        else:
-            None
     
     def _set_weights(self,weights):
-        if self._poulation == None:
+        try:
+            type(self._poulation)
+        except NameError:
             return weights
-        else:
-            None
     
     def _set_population(self):
-        if self._poulation == None:
-            return self.get_permutationA0001()
-        else:
-            None
+        try:
+            type(self._poulation)
+        except NameError:
+            return None
 
     def _set_percent_cross(self,percent_cross):
-        if self._poulation != None:
+        try:
+            type(self._poulation)
+        except NameError:
             return percent_cross
-        else:
-            None
 
     def _set_percent_mutation(self,percent_mutation):
-        if self._poulation == None:
+        try:
+            type(self._poulation)
+        except NameError:
             return percent_mutation
-        else:
-            None
     
     def _set_fitness(self,fitness):
-        if self._poulation == None:
+        try:
+            type(self._poulation)
+        except NameError:
             return fitness
-        else:
-            None
 
     def get_permutationA0001(self):
         return self._permutationA0001(self._n_machines,1,self._n_samples)

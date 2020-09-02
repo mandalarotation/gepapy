@@ -18,67 +18,35 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         self._percent_cross = self._set_percent_cross(percent_cross)
         self._percent_mutation = self._set_percent_mutation(percent_mutation)
         self._fitness = None
-        self._poulation = self._set_population()
+        self._population = self._set_population()
 
 
     def set_n_samples(self,n_samples):
-        try:
-            type(self._population)
-            if n_samples < self._n_samples.shape[0]:
-                self._n_samples = self._poulation[0:n_samples]
-            else:
-                None
-        except NameError:
-            return n_samples
-
+        return n_samples
 
     def _set_n_machines(self,n_machines):
-        try:
-            type(self._poulation)
-        except NameError:
-            return n_machines
+        return n_machines
 
     def _set_processing_time(self,processing_time):
-        try:
-            type(self._poulation)
-        except NameError:
-            return processing_time
+        return processing_time
 
     def _set_due_date(self,due_date):
-        try:
-            type(self._poulation)
-        except NameError:
-            return due_date
+        return due_date
     
     def _set_weights(self,weights):
-        try:
-            type(self._poulation)
-        except NameError:
-            return weights
+        return weights
     
     def _set_population(self):
-        try:
-            type(self._poulation)
-        except NameError:
-            return None
+        return self.get_permutationA0001()
 
     def _set_percent_cross(self,percent_cross):
-        try:
-            type(self._poulation)
-        except NameError:
-            return percent_cross
+        return percent_cross
 
     def _set_percent_mutation(self,percent_mutation):
-        try:
-            type(self._poulation)
-        except NameError:
-            return percent_mutation
+        return percent_mutation
     
     def _set_fitness(self,fitness):
-        try:
-            type(self._poulation)
-        except NameError:
-            return fitness
+        return fitness
 
     def get_permutationA0001(self):
         return self._permutationA0001(self._n_machines,1,self._n_samples)

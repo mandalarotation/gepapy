@@ -7,11 +7,11 @@ import math
 
 class PermutationA0001():
 
-    def __init__():
+    def __init__(self):
         None
 
     
-    def permutationA0001(digits,repetitions,n_samples):
+    def permutationA0001(self,digits,repetitions,n_samples):
 
         def permutationAC0001():
 

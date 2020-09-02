@@ -4,13 +4,13 @@ import numpy as np
 import cupy as cp
 import math
 
-class crossA0001():
+class CrossA0001():
 
-    def __init__():
+    def __init__(self):
         None
 
 
-    def crossA0001(X,digits,repetitions,n_samples,percent_c):
+    def crossA0001(self,X,digits,repetitions,n_samples,percent_c):
     
         def crossAC0001():
             @cuda.jit

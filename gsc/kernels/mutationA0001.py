@@ -4,12 +4,12 @@ import numpy as np
 import cupy as cp
 import math
 
-class mutationA0001():
+class MutationA0001():
 
-    def __init__():
+    def __init__(self):
         None
 
-    def mutationA0001(X,digits,repetitions,n_samples,percent_m):
+    def mutationA0001(self,X,digits,repetitions,n_samples,percent_m):
 
 
         def mutationAC0001():

@@ -10,7 +10,7 @@ class CrossA0001():
         None
 
 
-    def crossA0001(self,X,digits,repetitions,n_samples,percent_c):
+    def _crossA0001(self,X,digits,repetitions,n_samples,percent_c):
     
         def crossAC0001():
             @cuda.jit

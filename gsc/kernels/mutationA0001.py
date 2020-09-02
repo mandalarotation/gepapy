@@ -9,7 +9,7 @@ class MutationA0001():
     def __init__(self):
         None
 
-    def mutationA0001(self,X,digits,repetitions,n_samples,percent_m):
+    def _mutationA0001(self,X,digits,repetitions,n_samples,percent_m):
 
 
         def mutationAC0001():

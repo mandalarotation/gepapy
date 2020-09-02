@@ -9,7 +9,7 @@ from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 
 class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
-    def __init__(self,n_samples,n_machines,processing_time,due_date,weigths):
+    def __init__(self,n_samples,n_machines,processing_time,due_date,weights,percent_cross,percent_mutation):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_machines = self._set_n_machines(n_machines)
         self._processing_time = self._set_processing_time(processing_time)
@@ -18,7 +18,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         self._poulation = self._set_population()
         self._percent_cross = self._set_percent_cross(percent_cross)
         self._percent_mutation = self._set_percent_mutation(percent_mutation)
-        self._fitness = self._set_fitness(fitness)
+        self._fitness = None
 
 
     def set_n_samples(self,n_samples):
@@ -56,7 +56,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
     
     def _set_population(self):
         if self._poulation == None:
-            None
+            return self.get_permutationA0001()
         else:
             None
 
@@ -79,7 +79,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
             None
 
     def get_permutationA0001(self):
-        None
+        return self._permutationA0001(self._n_machines,1,self._n_samples)
     
     def get_crossA0001(self):
         None

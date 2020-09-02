@@ -11,7 +11,7 @@ class PermutationA0001():
         None
 
     
-    def permutationA0001(self,digits,repetitions,n_samples):
+    def _permutationA0001(self,digits,repetitions,n_samples):
 
         def permutationAC0001():
 

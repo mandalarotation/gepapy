@@ -9,8 +9,9 @@ from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 
 class JobShop(PermutationA0001,CrossA0001,MutationA0001):
-    def __init__():
-        None
+    def __init__(self):
+        self.n_samples = None
+        self.n_machines = None
 
     def get_permutationA0001(self):
         None

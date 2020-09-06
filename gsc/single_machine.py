@@ -9,7 +9,7 @@ from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 
 class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
-    def __init__(self,n_samples=10,n_machines=8,processing_time=[1,2,3],due_date=[1,2,3],weights=[1,2,3],percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.05,percent_selection=0.1):
+    def __init__(self,n_samples=10,n_machines=8,processing_time=[1,2,3],due_date=[1,2,3],weights=[1,2,3],percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_machines = self._set_n_machines(n_machines)
         self._processing_time = self._set_processing_time(processing_time)
@@ -99,7 +99,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         return self._percent_intra_mutation
 
     def get_percent_migration(self):
-        self._percent_migration
+        return self._percent_migration
 
     def get_percent_selection(self):
         return self._percent_selection
@@ -137,12 +137,16 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         index_selection = int(self.get_n_samples()*self.get_percent_selection())
         index_mutation = int(self.get_n_samples()*self.get_percent_mutation())
         cp.random.shuffle(x_population)
-        if index_mutation%2 == 0:
-            y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
-            x_aux[index_selection:,:][0:index_mutation,:] = y_population
-            self._population = x_aux
-        else: 
-            index_mutation -= 1
-            y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
-            x_aux[index_selection:,:][0:index_mutation,:] = y_population
-            self._set_population(x_aux)
+        y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
+        x_aux[index_selection:,:][0:index_mutation,:] = y_population
+        self._population = x_aux
+
+    def exec_migrationA0001(self):
+        x_population = cp.copy(self.get_population())
+        x_aux = cp.copy(self.get_population())
+        index_selection = int(self.get_n_samples()*self.get_percent_selection())
+        index_migration = int(self.get_n_samples()*self.get_percent_migration())
+        cp.random.shuffle(x_population)
+        y_population = self._permutationA0001(self.get_n_machines(),1,index_migration)
+        x_aux[index_selection:,:][0:index_migration,:] = y_population
+        self._population = x_aux

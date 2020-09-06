@@ -14,4 +14,7 @@ p.exec_mutationA0001()
 
 print(p.get_population())
 
+p.exec_migrationA0001()
+
+print(p.get_population())
 

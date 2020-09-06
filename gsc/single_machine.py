@@ -65,11 +65,11 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
     def _set_fitness(self,fitness):
         return fitness
 
-    def _set_population(self):
+    def _set_population(self,population=None):
         if self._population == None:
             return self.exec_permutationA0001()
         else:
-            self._population = None
+            self._population = population
 
     def get_n_samples(self):
         return self._n_samples 
@@ -113,25 +113,24 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
 
 
     def exec_permutationA0001(self):
-        return self._permutationA0001(self._n_machines,1,self._n_samples)
+        return self._permutationA0001(self.get_n_machines(),1,self.get_n_samples())
     
     def exec_crossA0001(self):
         x_population = cp.copy(self.get_population())
         x_aux = cp.copy(self.get_population())
-        index_selection = int(self._n_samples*self._percent_selection)
-        index_cross = int(self._n_samples*self._percent_cross)
+        index_selection = int(self.get_n_samples()*self.get_percent_selection())
+        index_cross = int(self.get_n_samples()*self.get_percent_cross())
         cp.random.shuffle(x_population)
         if index_cross%2 == 0:
-            y_population = self._crossA0001(self,x_population[index_selection:,:][0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
-            x_population[0:index_cross,:] = y_population
+            y_population = self._crossA0001(x_population[index_selection:,:][0:index_cross,:],self.get_n_machines(),1,index_cross, self.get_percent_intra_cross())
             x_aux[index_selection:,:][0:index_cross,:] = y_population
             self._population = x_aux
         else: 
             index_cros -= 1
-            y_population = self._crossA0001(self,x_population[index_selection:,:][0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
-            x_population[0:index_cross,:] = y_population
+            y_population = self._crossA0001(x_population[index_selection:,:][0:index_cross,:],self.get_n_machines(),1,self.get_n_samples(), self.get_percent_intra_cross())
+            x_population[index_selection:,:][0:index_cross,:] = y_population
             x_aux[index_selection:,:][0:index_cross,:] = y_population
-            self._population = x_aux
+            self._set_population(x_aux)
         
     def exec_mutation(self):
         None

@@ -9,7 +9,7 @@ from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 
 class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
-    def __init__(self,n_samples,n_machines,processing_time,due_date,weights,percent_cross,percent_intra_cross,percent_mutation,percent_intra_mutation,percent_migration,percent_selection):
+    def __init__(self,n_samples=10,n_machines=8,processing_time=[1,2,3],due_date=[1,2,3],weights=[1,2,3],percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.05,percent_selection=0.1):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_machines = self._set_n_machines(n_machines)
         self._processing_time = self._set_processing_time(processing_time)
@@ -75,40 +75,40 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         return self._n_samples 
 
     def get_n_machines(self):
-        self._n_machines
+        return self._n_machines
 
     def get_processing_time(self):
-        self._processing_time
+        return self._processing_time
 
     def get_due_date(self):
-        self._due_date
+        return self._due_date
     
     def get_weights(self):
-        self._weights
+        return self._weights
 
     def get_percent_cross(self):
-        self._percent_cross
+        return self._percent_cross
 
     def get_percent_intra_cross(self):
-        self._percent_intra_cross
+        return self._percent_intra_cross
 
     def get_percent_mutation(self):
-        self._percent_mutation
+        return self._percent_mutation
 
     def get_percent_intra_mutation(self):
-        self._percent_intra_mutation
+        return self._percent_intra_mutation
 
     def get_percent_migration(self):
         self._percent_migration
 
     def get_percent_selection(self):
-        self._percent_selection
+        return self._percent_selection
 
     def get_fitness(self):
-        self._fitness
+        return self._fitness
 
     def get_population(self): 
-        self._population
+        return self._population
 
 
 
@@ -122,13 +122,16 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         index_cross = int(self._n_samples*self._percent_cross)
         cp.random.shuffle(x_population)
         if index_cross%2 == 0:
-            y_population = _crossA0001(self,x_population[index_selection:,:][0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
+            y_population = self._crossA0001(self,x_population[index_selection:,:][0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
             x_population[0:index_cross,:] = y_population
             x_aux[index_selection:,:][0:index_cross,:] = y_population
             self._population = x_aux
         else: 
             index_cros -= 1
+            y_population = self._crossA0001(self,x_population[index_selection:,:][0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
+            x_population[0:index_cross,:] = y_population
+            x_aux[index_selection:,:][0:index_cross,:] = y_population
+            self._population = x_aux
         
-
     def exec_mutation(self):
         None

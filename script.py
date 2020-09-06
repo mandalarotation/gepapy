@@ -9,3 +9,9 @@ print(p.get_population())
 p.exec_crossA0001()
 
 print(p.get_population())
+
+p.exec_mutationA0001()
+
+print(p.get_population())
+
+

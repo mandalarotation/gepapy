@@ -9,7 +9,7 @@ from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 
 class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
-    def __init__(self,n_samples,n_machines,processing_time,due_date,weights,percent_cross,percent_intra_cross,percent_mutation,percent_intra_mutation):
+    def __init__(self,n_samples,n_machines,processing_time,due_date,weights,percent_cross,percent_intra_cross,percent_mutation,percent_intra_mutation,percent_migration):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_machines = self._set_n_machines(n_machines)
         self._processing_time = self._set_processing_time(processing_time)
@@ -19,6 +19,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         self._percent_intra_cross = self.set_percent_intra_cross(percent_intra_cross)
         self._percent_mutation = self.set_percent_mutation(percent_mutation)
         self._percent_intra_mutation = self.set_percent_intra_mutation(percent_intra_mutation)
+        self._percent_migration = self.set_percent_migration(percent_migration)
         self._fitness = None
         self._population = self._set_population()
 
@@ -52,15 +53,59 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
     
     def set_percent_intra_mutation(self,percent_intra_mutation):
         return percent_intra_mutation
+    
+    def set_percent_migration(self,percent_migration):
+        return percent_migration
 
     def _set_fitness(self,fitness):
         return fitness
 
-    def get_permutationA0001(self):
+    def _set_population(self,population):
+        return population
+
+    def get_n_samples(self):
+        return self._n_samples 
+
+    def get_n_machines(self):
+        self._n_machines
+
+    def get_processing_time(self):
+        self._processing_time
+
+    def get_due_date(self):
+        self._due_date
+    
+    def get_weights(self):
+        self._weights
+
+    def get_percent_cross(self):
+        self._percent_cross
+
+    def get_percent_intra_cross(self):
+        self._percent_intra_cross
+
+    def get_percent_mutation(self):
+        self._percent_mutation
+
+    def get_percent_intra_mutation(self):
+        self.get_percent_intra_mutation
+
+    def get_percent_migration(self):
+        self._percent_migration
+
+    def get_fitness(self):
+        self._fitness
+
+    def get_population(self): 
+        self._population
+
+
+
+    def exec_permutationA0001(self):
         return self._permutationA0001(self._n_machines,1,self._n_samples)
     
-    def get_crossA0001(self):
+    def exec_crossA0001(self):
         None
 
-    def get_mutation(self):
+    def exec_mutation(self):
         None

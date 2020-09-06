@@ -96,10 +96,13 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         self._percent_mutation
 
     def get_percent_intra_mutation(self):
-        self.get_percent_intra_mutation
+        self._percent_intra_mutation
 
     def get_percent_migration(self):
         self._percent_migration
+
+    def get_percent_selection(self):
+        self._percent_selection
 
     def get_fitness(self):
         self._fitness
@@ -114,12 +117,15 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
     
     def exec_crossA0001(self):
         x_population = cp.copy(self.get_population())
+        x_aux = cp.copy(self.get_population())
+        index_selection = int(self._n_samples*self._percent_selection)
+        index_cross = int(self._n_samples*self._percent_cross)
         cp.random.shuffle(x_population)
-        index_cross = x_population.shape[0]*self._percent_cross
         if index_cross%2 == 0:
-            y_population = _crossA0001(self,x_population[0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
+            y_population = _crossA0001(self,x_population[index_selection:,:][0:index_cross,:],self._n_machines,1,self._n_samples, self._percent_intra_cros)
             x_population[0:index_cross,:] = y_population
-            self._population = x_population
+            x_aux[index_selection:,:][0:index_cross,:] = y_population
+            self._population = x_aux
         else: 
             index_cros -= 1
         

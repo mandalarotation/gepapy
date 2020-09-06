@@ -7,7 +7,7 @@ import math
 from gsc.operations import Operations
 
 class Single_Machine(Operations):
-    def __init__(self,n_samples=10,n_jobs=8,processing_time=[1,2,3],due_date=[1,2,3],weights=[1,2,3],percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1):
+    def __init__(self,n_samples=10,n_jobs=8,processing_time=None,due_date=None,weights=None,percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_jobs = self._set_n_jobs(n_jobs)
         self._n_operations = 1

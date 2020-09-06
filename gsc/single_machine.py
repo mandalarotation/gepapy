@@ -9,9 +9,9 @@ from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 
 class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
-    def __init__(self,n_samples=10,n_machines=8,processing_time=[1,2,3],due_date=[1,2,3],weights=[1,2,3],percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1):
+    def __init__(self,n_samples=10,n_jobs=8,processing_time=[1,2,3],due_date=[1,2,3],weights=[1,2,3],percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1):
         self._n_samples = self.set_n_samples(n_samples)
-        self._n_machines = self._set_n_machines(n_machines)
+        self._n_jobs = self._set_n_jobs(n_jobs)
         self._processing_time = self._set_processing_time(processing_time)
         self._due_date = self._set_due_date(due_date)
         self._weights = self._set_weights(weights)        
@@ -29,8 +29,8 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
     def set_n_samples(self,n_samples):
         return n_samples
 
-    def _set_n_machines(self,n_machines):
-        return n_machines
+    def _set_n_jobs(self,n_jobs):
+        return n_jobs
 
     def _set_processing_time(self,processing_time):
         return processing_time
@@ -74,8 +74,8 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
     def get_n_samples(self):
         return self._n_samples 
 
-    def get_n_machines(self):
-        return self._n_machines
+    def get_n_jobs(self):
+        return self._n_jobs
 
     def get_processing_time(self):
         return self._processing_time
@@ -113,7 +113,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
 
 
     def exec_permutationA0001(self):
-        return self._permutationA0001(self.get_n_machines(),1,self.get_n_samples())
+        return self._permutationA0001(self.get_n_jobs(),1,self.get_n_samples())
     
     def exec_crossA0001(self):
         x_population = cp.copy(self.get_population())
@@ -122,12 +122,12 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         index_cross = int(self.get_n_samples()*self.get_percent_cross())
         cp.random.shuffle(x_population)
         if index_cross%2 == 0:
-            y_population = self._crossA0001(x_population[index_selection:,:][0:index_cross,:],self.get_n_machines(),1,index_cross, self.get_percent_intra_cross())
+            y_population = self._crossA0001(x_population[index_selection:,:][0:index_cross,:],self.get_n_jobs(),1,index_cross, self.get_percent_intra_cross())
             x_aux[index_selection:,:][0:index_cross,:] = y_population
             self._population = x_aux
         else: 
             index_cros -= 1
-            y_population = self._crossA0001(x_population[index_selection:,:][0:index_cross,:],self.get_n_machines(),1,self.get_n_samples(), self.get_percent_intra_cross())
+            y_population = self._crossA0001(x_population[index_selection:,:][0:index_cross,:],self.get_n_jobs(),1,self.get_n_samples(), self.get_percent_intra_cross())
             x_aux[index_selection:,:][0:index_cross,:] = y_population
             self._set_population(x_aux)
         
@@ -137,7 +137,7 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         index_selection = int(self.get_n_samples()*self.get_percent_selection())
         index_mutation = int(self.get_n_samples()*self.get_percent_mutation())
         cp.random.shuffle(x_population)
-        y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
+        y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_jobs(),1,index_mutation,self.get_percent_intra_mutation())
         x_aux[index_selection:,:][0:index_mutation,:] = y_population
         self._population = x_aux
 
@@ -147,6 +147,6 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         index_selection = int(self.get_n_samples()*self.get_percent_selection())
         index_migration = int(self.get_n_samples()*self.get_percent_migration())
         cp.random.shuffle(x_population)
-        y_population = self._permutationA0001(self.get_n_machines(),1,index_migration)
+        y_population = self._permutationA0001(self.get_n_jobs(),1,index_migration)
         x_aux[index_selection:,:][0:index_migration,:] = y_population
         self._population = x_aux

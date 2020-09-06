@@ -1,8 +1,8 @@
 import time 
 from gsc.single_machine import Single_Machine
+from gsc.job_shop import Job_Shop
 
-
-p = Single_Machine()
+p = Job_Shop()
 
 print(p.get_population())
 

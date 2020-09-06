@@ -139,12 +139,12 @@ class Single_Machine(PermutationA0001,CrossA0001,MutationA0001):
         index_mutation = int(self.get_n_samples()*self.get_percent_mutation())
         cp.random.shuffle(x_population)
         if index_mutation%2 == 0:
-            y_population = _self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
+            y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
             x_aux[index_selection:,:][0:index_cross,:] = y_population
             self._population = x_aux
         else: 
             index_mutation -= 1
-            y_population = _self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
+            y_population = self._mutationA0001(x_population[index_selection:,:][0:index_mutation,:],self.get_n_machines(),1,index_mutation,self.get_percent_intra_mutation())
             x_population[index_selection:,:][0:index_cross,:] = y_population
             x_aux[index_selection:,:][0:index_cross,:] = y_population
             self._set_population(x_aux)

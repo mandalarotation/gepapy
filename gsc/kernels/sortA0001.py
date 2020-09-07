@@ -15,11 +15,10 @@ class SortA0001():
             def kernel(X,X_AUX,Y_SORT,digits,n_samples):
                 row,col = cuda.grid(2)
                 if row < n_samples and col < digits: 
-                    X_AUX[row,col] = X[int(Y_SORT[row,col]),col]
-                cuda.syncthreads()
+                    X_AUX[int(math.ceil(Y_SORT[row,col,row])),col] = X[row,col]
 
             x_dim_1 = digits*repetitions
-            Y_SORT = cp.repeat(cp.expand_dims(cp.argsort(y),axis=1),x_dim_1,axis=1)
+            Y_SORT = cp.array(cp.repeat(cp.expand_dims(cp.repeat(cp.expand_dims(cp.argsort(y),axis=0),x_dim_1,axis=0),axis=0),n_samples,axis=0),dtype=cp.float32)
             X_AUX = cp.zeros([n_samples,digits])
 
             threadsperblock = (16, 16)
@@ -34,4 +33,5 @@ class SortA0001():
 
             return X_AUX,cp.sort(y)
         return sortAC0001()
+
     

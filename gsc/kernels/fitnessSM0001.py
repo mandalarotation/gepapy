@@ -17,10 +17,9 @@ class FitnessSM0001():
                     ptime=0
                     tardiness=0
                     for j in range(digits):
-                        ptime=ptime+p[row,int(math.ceil(X[row][j]))]
-                        tardiness=tardiness+w[row,int(math.ceil(X[row][j]))]*max(ptime-d[row,int(math.ceil(X[row][j]))],0)
-                        y[row]=tardiness
-                cuda.syncthreads()  
+                        ptime=ptime+p[row,int((X[row][j]))]
+                        tardiness=tardiness+w[row,int((X[row][j]))]*max(ptime-d[row,int((X[row][j]))],0)
+                        y[row]=tardiness  
 
             y = cp.zeros(n_samples,dtype=cp.float32)
             threadsperblock = 16

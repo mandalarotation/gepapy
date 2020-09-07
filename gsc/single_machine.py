@@ -21,8 +21,8 @@ class Single_Machine(Operations,FitnessSM0001):
         self._percent_intra_mutation = self.set_percent_intra_mutation(percent_intra_mutation)
         self._percent_migration = self.set_percent_migration(percent_migration)
         self._percent_selection = self.set_percent_selection(percent_selection)
-        self._fitness = None
-        self._population = None
+        self._fitness = cp.array([],dtype=cp.float32)
+        self._population = cp.array([],dtype=cp.float32)
         self._population = self._set_population()
 
     def _set_processing_time(self,processing_time):
@@ -49,7 +49,7 @@ class Single_Machine(Operations,FitnessSM0001):
     def exec_fitnessSM0001(self):
         x_population = cp.copy(self.get_population())
         y_fitness = self._fitnessSM0001(self.get_population(),self.get_processing_time(),self.get_due_date(),self.get_weights(),self.get_n_jobs(),self.get_n_samples())
-        self._fitness = y_fitness 
+        self._set_fitness(y_fitness)
 
 
 

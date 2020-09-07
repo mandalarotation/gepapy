@@ -18,15 +18,15 @@ class MutationA0001():
                 row = cuda.grid(1)
                 if row < n_samples:
                     for i in range(AL.shape[1]):
-                        x_aux = X_AUX[row,int(AL[row,i,0])]
-                        X_AUX[row,int(AL[row,i,0])] = X_AUX[row,int(math.ceil(AL[row,i,1]))]
-                        X_AUX[row,int(AL[row,i,1])] = x_aux
+                        x_aux = X_AUX[row,int(math.ceil(AL[row,i,0]))]
+                        X_AUX[row,int(math.ceil(AL[row,i,0]))] = X_AUX[row,int(math.ceil(AL[row,i,1]))]
+                        X_AUX[row,int(math.ceil(AL[row,i,1]))] = x_aux
 
             x_dim_1 = digits*repetitions
 
             X_AUX = cp.copy(X)
 
-            AL = cp.array(cp.random.rand(n_samples,int(X.shape[1]*percent_m),2),dtype=cp.float32)*(x_dim_1-1)
+            AL = cp.array(cp.random.rand(n_samples,int(x_dim_1*percent_m),2),dtype=cp.float32)*(x_dim_1-1)
 
             threadsperblock = 16
             blockspergrid_x = int(math.ceil((n_samples) / threadsperblock))

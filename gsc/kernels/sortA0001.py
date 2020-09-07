@@ -9,14 +9,14 @@ class SortA0001():
         None
 
 
-    def sortA0001(self,X,y,digits,repetitions,n_samples):
+    def _sortA0001(self,X,y,digits,repetitions,n_samples):
         def sortAC0001():
             @cuda.jit
             def kernel(X,X_AUX,Y_SORT,digits,n_samples):
-            row,col = cuda.grid(2)
-            if row < n_samples and col < digits: 
-                X_AUX[row,col] = X[int(math.ceil(Y_SORT[row,col])),col]
-            cuda.syncthreads()
+                row,col = cuda.grid(2)
+                if row < n_samples and col < digits: 
+                    X_AUX[row,col] = X[int(Y_SORT[row,col]),col]
+                cuda.syncthreads()
 
             x_dim_1 = digits*repetitions
             Y_SORT = cp.repeat(cp.expand_dims(cp.argsort(y),axis=1),x_dim_1,axis=1)

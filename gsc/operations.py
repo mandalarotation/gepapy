@@ -7,8 +7,9 @@ import math
 from gsc.kernels.permutationA0001 import PermutationA0001
 from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
+from gsc.kernels.sortA0001 import SortA0001
 
-class Operations(PermutationA0001,CrossA0001,MutationA0001):
+class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001):
 
     def __init__(self):
         None
@@ -123,4 +124,11 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001):
         y_population = self._permutationA0001(self.get_n_jobs(),self.get_n_operations(),index_migration)
         x_aux[index_selection:,:][0:index_migration,:] = y_population
         self._population = x_aux
+
+    def exec_sortA0001(self):
+        x_population = cp.copy(self.get_population())
+        x_sort = cp.copy(self.get_fitness())
+        y_population,y_sort = self._sortA0001(self.get_population(),self.get_fitness(),self.get_n_jobs(),self.get_n_operations(),self.get_n_samples())
+        self._population = y_population
+        self._fitness = y_sort
     

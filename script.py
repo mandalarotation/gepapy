@@ -16,7 +16,7 @@ p = Single_Machine(n_samples=3000000,n_jobs=20,processing_time=p,due_date=d,weig
 fitness = []
 fitness2 = []
 
-for i in range(100):
+for i in range(10):
 
     p.exec_crossA0001()
     p.exec_fitnessSM0001()

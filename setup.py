@@ -12,4 +12,4 @@ setup(
         scripts=[],
         install_requires=["numpy",
                           "cupy",
-                          "numba"]
+                          "numba"])

@@ -2,7 +2,7 @@ from setuptools import setup
 setup(
         name="gsc",
         version="1.1.1",
-        description="Backend analitica de datos SGC",
+        description="Developing a library with Cuda C and Python for solve Scheduling problems on GPU",
         author="Jean Carlo Jimenez Giraldo",
         author_email="mandalarotation@gmail.com",
         url="https://github.com/mandalarotation/GenSchedulingCuda-GSC",

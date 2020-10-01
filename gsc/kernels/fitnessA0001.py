@@ -46,7 +46,8 @@ class FitnessA0001():
 
             return t_j_expand
         
-        C = fitnessC0001()
+        C = fitnessAC0001()
+
 
         def fitnessAC0002():
             d_expand = cp.array(cp.repeat(cp.expand_dims(d,axis=0),n_samples,axis=0),dtype=cp.float32)

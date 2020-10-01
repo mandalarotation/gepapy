@@ -5,7 +5,6 @@ import cupy as cp
 import math
 
 from gsc.operations import Operations
-from gsc.kernels.fitnessSM0001 import FitnessSM0001
 
 class Single_Machine(Operations):
     def __init__(self,n_samples=10,n_jobs=8,processing_time=None,machine_sequence=None,due_date=None,weights=None,percent_cross=0.5,percent_intra_cross=0.5,percent_mutation=0.5,percent_intra_mutation=0.1,percent_migration=0.5,percent_selection=0.1,fitness_type="E_Lw"):

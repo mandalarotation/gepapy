@@ -67,4 +67,4 @@ class FitnessA0001():
             max_C = cp.max(C,axis = 1)
 
             return {"E_C": E_C, "E_L": E_L, "E_LT": E_LT, "E_U": E_U, "E_Lw": E_Lw, "E_LTw": E_LTw, "E_Uw": E_Uw, "max_C": max_C}
-        return fitnessC0002()
+        return fitnessAC0002()

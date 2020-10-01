@@ -13,7 +13,7 @@ class Single_Machine(Operations):
         self._n_machines = 1
         self._n_operations = 1
         self._fitness_type = self._set_fitness_type(fitness_type)
-        self._processing_time = self._set_processing_time(processing_time)
+        self._processing_time = cp.expand_dims(self._set_processing_time(processing_time),axis=1)
         self._machine_sequence = cp.expand_dims(cp.zeros(n_jobs,dtype=cp.float32),axis=1)
         self._due_date = self._set_due_date(due_date)
         self._weights = self._set_weights(weights)        

@@ -20,9 +20,15 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
 
     def _set_n_jobs(self,n_jobs):
         return n_jobs
+    
+    def _set_n_machines(self,n_machines):
+        return n_machines
 
     def _set_n_operations(self,n_operations):
         return n_operations
+    
+    def _set_fitness_type(self,fitness_type):
+        return fitness_type
 
     def _set_population(self):
         return self.get_permutationA0001()
@@ -61,11 +67,11 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
         return machine_sequence   
 
     def _set_due_date(self,due_date):
-        due_date = cp.repeat(cp.expand_dims(cp.array(due_date,dtype=cp.float32),axis=0),self.get_n_samples(),axis=0)
+        due_date = cp.array(due_date,dtype=cp.float32)
         return due_date
     
     def _set_weights(self,weights):
-        weights = cp.repeat(cp.expand_dims(cp.array(weights,dtype=cp.float32),axis=0),self.get_n_samples(),axis=0) 
+        weights = cp.array(weights,dtype=cp.float32) 
         return weights 
 
     def get_n_samples(self):
@@ -73,9 +79,15 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
 
     def get_n_jobs(self):
         return self._n_jobs
+
+    def get_n_machines(self):
+        return self._n_machines
     
     def get_n_operations(self):
         return self._n_operations
+
+    def get_fitness_type(self):
+        return self._fitness_type
 
     def get_percent_cross(self):
         return self._percent_cross
@@ -160,4 +172,6 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
         self._set_fitness(y_sort)
 
     def exec_fitnessA0001(self):
-        fitness = self._fitnessA0001(X,d,w,T,M,digits,n_samples,n_machines)
+        x_population = cp.copy(self.get_population())
+        fitness = self._fitnessA0001(x_population,self.get_due_date(),self.get_weights(),self.get_processing_time(),self.get_machine_sequence(),self.get_n_jobs(),self.get_n_samples(),self.get_n_machines())
+        self._set_fitness(fitness[self.get_fitness_type()])

@@ -7,11 +7,13 @@ import math
 from gsc.operations import Operations
 from gsc.kernels.fitnessSM0001 import FitnessSM0001
 
-class Single_Machine(Operations,FitnessSM0001):
-    def __init__(self,n_samples=10,n_jobs=8,processing_time=None,due_date=None,weights=None,percent_cross=0.5,percent_intra_cross=0.5,percent_mutation=0.5,percent_intra_mutation=0.1,percent_migration=0.5,percent_selection=0.1):
+class Single_Machine(Operations):
+    def __init__(self,n_samples=10,n_jobs=8,processing_time=None,due_date=None,weights=None,percent_cross=0.5,percent_intra_cross=0.5,percent_mutation=0.5,percent_intra_mutation=0.1,percent_migration=0.5,percent_selection=0.1,fitness_type="max_C"):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_jobs = self._set_n_jobs(n_jobs)
+        self._n_machines = self._set_n_machines(n_machines)
         self._n_operations = 1
+        self._fitness_type = self._set_fitness_type(fitness_type)
         self._processing_time = self._set_processing_time(processing_time)
         self._due_date = self._set_due_date(due_date)
         self._weights = self._set_weights(weights)        

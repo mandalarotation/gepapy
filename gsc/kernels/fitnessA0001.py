@@ -5,12 +5,12 @@ import cupy as cp
 import math
 
 
-class Fitness0001():
+class FitnessA0001():
     def __init__(self):
         None
 
-    def _fitness0001(self,X,d,w,T,M,digits,n_samples,n_machines):
-        def fitnessC0001():
+    def _fitnessA0001(self,X,d,w,T,M,digits,n_samples,n_machines):
+        def fitnessAC0001():
             @cuda.jit
             def kernel(X,T,M,digits,n_samples,n_machines,c_o,t_j,t_m):
                 row = cuda.grid(1)
@@ -48,7 +48,7 @@ class Fitness0001():
         
         C = fitnessC0001()
 
-        def fitnessC0002():
+        def fitnessAC0002():
             d_expand = cp.array(cp.repeat(cp.expand_dims(d,axis=0),n_samples,axis=0),dtype=cp.float32)
             w_expand = cp.array(cp.repeat(cp.expand_dims(w,axis=0),n_samples,axis=0),dtype=cp.float32)
             L = C - d

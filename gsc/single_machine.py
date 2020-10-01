@@ -25,32 +25,6 @@ class Single_Machine(Operations,FitnessSM0001):
         self._population = cp.array([],dtype=cp.float32)
         self._population = self._set_population()
 
-    def _set_processing_time(self,processing_time):
-        processing_time = cp.repeat(cp.expand_dims(cp.array(processing_time,dtype=cp.float32),axis=0),self.get_n_samples() ,axis=0)
-        return processing_time
-
-    def _set_due_date(self,due_date):
-        due_date = cp.repeat(cp.expand_dims(cp.array(due_date,dtype=cp.float32),axis=0),self.get_n_samples(),axis=0)
-        return due_date
-    
-    def _set_weights(self,weights):
-        weights = cp.repeat(cp.expand_dims(cp.array(weights,dtype=cp.float32),axis=0),self.get_n_samples(),axis=0) 
-        return weights    
-
-    def get_processing_time(self):
-        return self._processing_time
-
-    def get_due_date(self):
-        return self._due_date
-    
-    def get_weights(self):
-        return self._weights
-
-    def exec_fitnessSM0001(self):
-        x_population = cp.copy(self.get_population())
-        y_fitness = self._fitnessSM0001(self.get_population(),self.get_processing_time(),self.get_due_date(),self.get_weights(),self.get_n_jobs(),self.get_n_samples())
-        self._set_fitness(y_fitness)
-
 
 
 

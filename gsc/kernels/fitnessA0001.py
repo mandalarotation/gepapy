@@ -48,16 +48,15 @@ class FitnessA0001():
         
         C = fitnessAC0001()
 
-
         def fitnessAC0002():
             d_expand = cp.array(cp.repeat(cp.expand_dims(d,axis=0),n_samples,axis=0),dtype=cp.float32)
             w_expand = cp.array(cp.repeat(cp.expand_dims(w,axis=0),n_samples,axis=0),dtype=cp.float32)
-            L = C - d
+            L = C - d_expand
             LT = cp.where(L > 0, L , 0)
             U = cp.where(L > 0, L , 0)
-            Lw = L*w
-            LTw = LT*w
-            Uw = U*w
+            Lw = L*w_expand
+            LTw = LT*w_expand
+            Uw = U*w_expand
             E_C = cp.sum(C,axis = 1)
             E_L = cp.sum(L, axis = 1)
             E_LT = cp.sum(LT, axis = 1)

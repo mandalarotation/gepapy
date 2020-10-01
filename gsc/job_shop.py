@@ -7,7 +7,7 @@ import math
 from gsc.operations import Operations
 
 class Job_Shop(Operations):
-    def __init__(self,n_samples=10,n_jobs=8,n_operations=3,n_machines=3,processing_time,machine_sequence,due_date,weights,percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1,fitness_type="max_C"):
+    def __init__(self,n_samples=10,n_jobs=8,n_operations=3,n_machines=3,processing_time=None,machine_sequence=None,due_date=None,weights=None,percent_cross=0.2,percent_intra_cross=0.5,percent_mutation=0.2,percent_intra_mutation=0.5,percent_migration=0.1,percent_selection=0.1,fitness_type="max_C"):
         self._n_samples = self.set_n_samples(n_samples)
         self._n_jobs = self._set_n_jobs(n_jobs)
         self._n_machines = self._set_n_machines(n_machines)

@@ -61,10 +61,10 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
             self._population = population
     
     def _set_processing_time(self,processing_time):
-        return processing_time
+        return cp.array(processing_time,dtype=cp.float32)
 
     def _set_machine_sequence(self,machine_sequence):
-        return machine_sequence   
+        return cp.array(machine_sequence, dtype=cp.float32)   
 
     def _set_due_date(self,due_date):
         due_date = cp.array(due_date,dtype=cp.float32)

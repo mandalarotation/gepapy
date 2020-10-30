@@ -8,8 +8,9 @@ from gsc.kernels.permutationA0001 import PermutationA0001
 from gsc.kernels.crossA0001 import CrossA0001
 from gsc.kernels.mutationA0001 import MutationA0001
 from gsc.kernels.sortA0001 import SortA0001
+from gsc.kernels.fitnessA0001 import FitnessA0001
 
-class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001):
+class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA0001):
 
     def __init__(self):
         None
@@ -19,9 +20,15 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001):
 
     def _set_n_jobs(self,n_jobs):
         return n_jobs
+    
+    def _set_n_machines(self,n_machines):
+        return n_machines
 
     def _set_n_operations(self,n_operations):
         return n_operations
+    
+    def _set_fitness_type(self,fitness_type):
+        return fitness_type
 
     def _set_population(self):
         return self.get_permutationA0001()
@@ -52,15 +59,35 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001):
             return self.exec_permutationA0001()
         else:
             self._population = population
+    
+    def _set_processing_time(self,processing_time):
+        return cp.array(processing_time,dtype=cp.float32)
+
+    def _set_machine_sequence(self,machine_sequence):
+        return cp.array(machine_sequence, dtype=cp.float32)   
+
+    def _set_due_date(self,due_date):
+        due_date = cp.array(due_date,dtype=cp.float32)
+        return due_date
+    
+    def _set_weights(self,weights):
+        weights = cp.array(weights,dtype=cp.float32) 
+        return weights 
 
     def get_n_samples(self):
         return self._n_samples 
 
     def get_n_jobs(self):
         return self._n_jobs
+
+    def get_n_machines(self):
+        return self._n_machines
     
     def get_n_operations(self):
         return self._n_operations
+
+    def get_fitness_type(self):
+        return self._fitness_type
 
     def get_percent_cross(self):
         return self._percent_cross
@@ -85,6 +112,18 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001):
 
     def get_population(self): 
         return self._population
+
+    def get_processing_time(self):
+        return self._processing_time
+
+    def get_machine_sequence(self):
+        return self._machine_sequence
+    
+    def get_due_date(self):
+        return self._due_date
+    
+    def get_weights(self):
+        return self._weights
 
     def exec_permutationA0001(self):
         return self._permutationA0001(self.get_n_jobs(),self.get_n_operations(),self.get_n_samples())
@@ -131,4 +170,8 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001):
         y_population,y_sort = self._sortA0001(x_population,x_sort,self.get_n_jobs(),self.get_n_operations(),self.get_n_samples())
         self._set_population(y_population)
         self._set_fitness(y_sort)
-    
+
+    def exec_fitnessA0001(self):
+        x_population = cp.copy(self.get_population())
+        fitness = self._fitnessA0001(x_population,self.get_due_date(),self.get_weights(),self.get_processing_time(),self.get_machine_sequence(),self.get_n_jobs(),self.get_n_samples(),self.get_n_machines())
+        self._set_fitness(fitness[self.get_fitness_type()])

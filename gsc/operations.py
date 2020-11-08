@@ -178,4 +178,4 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
 
     def get_plan(self,row):
         x_population = cp.copy(self.get_population())
-        return = self._get_planA0001(row,x_population,self.get_processing_time(),self.get_machine_sequence(),self.get_n_jobs(),self.get_n_machines())
+        return self._get_planA0001(row,x_population,self.get_processing_time(),self.get_machine_sequence(),self.get_n_jobs(),self.get_n_machines())

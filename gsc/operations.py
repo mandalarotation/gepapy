@@ -175,3 +175,7 @@ class Operations(PermutationA0001,CrossA0001,MutationA0001,SortA0001,FitnessA000
         x_population = cp.copy(self.get_population())
         fitness = self._fitnessA0001(x_population,self.get_due_date(),self.get_weights(),self.get_processing_time(),self.get_machine_sequence(),self.get_n_jobs(),self.get_n_samples(),self.get_n_machines())
         self._set_fitness(fitness[self.get_fitness_type()])
+
+    def get_plan(self):
+        x_population = cp.copy(self.get_population())
+        return = self._get_planA0001(row,x_population,self.get_processing_time(),self.get_machine_sequence(),self.get_n_jobs(),self.get_n_machines())

@@ -69,7 +69,7 @@ class FitnessA0001():
             return {"E_C": E_C, "E_L": E_L, "E_LT": E_LT, "E_U": E_U, "E_Lw": E_Lw, "E_LTw": E_LTw, "E_Uw": E_Uw, "max_C": max_C}
         return fitnessAC0002()
 
-    def _get_planA0001(self,row,X,T,M,digits,n_machines):
+    def _get_planA0001(self,row,X,T,M,digits,n_machines,fact_conv,start_time):
 
         x = cp.asnumpy(X[row].copy())
         T = cp.asnumpy(T)
@@ -88,17 +88,17 @@ class FitnessA0001():
             c_o[idx] = c_o[idx] + 1
 
             if t_m[m_aux] > t_j[idx]:
-                plan.append({'Finish': (t_m[m_aux] + t_aux)*60 + 1604868407175,
+                plan.append({'Finish': (t_m[m_aux] + t_aux)*fact_conv + start_time,
                         'Resource': 'Job {}'.format(idx),
-                        'Start': (t_m[m_aux])*60 + 1604868407175,
+                        'Start': (t_m[m_aux])*fact_conv + start_time,
                         'Task': 'Machine {}'.format(m_aux)})
                 t_m[m_aux] = t_m[m_aux] + t_aux
                 t_j[idx] = t_m[m_aux]
 
             else:
-                plan.append({'Finish': (t_j[idx] + t_aux)*60 + 1604868407175,
+                plan.append({'Finish': (t_j[idx] + t_aux)*fact_conv + start_time,
                     'Resource': 'Job {}'.format(idx),
-                    'Start': (t_j[idx])*60 + 1604868407175,
+                    'Start': (t_j[idx])*fact_conv + start_time,
                     'Task': 'Machine {}'.format(m_aux)})
                 t_j[idx] = t_j[idx] + t_aux
                 t_m[m_aux] = t_j[idx]

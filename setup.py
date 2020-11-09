@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="gsc",
+    name="gen_scheduling_cuda",
     version="1.1.1",
     description="Developing a library with Cuda and Python for solving scheduling problems on GPU",
     author="Jean Carlo Jimenez Giraldo",

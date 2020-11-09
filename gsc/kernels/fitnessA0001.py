@@ -96,9 +96,9 @@ class FitnessA0001():
                 t_j[idx] = t_m[m_aux]
 
             else:
-                plan.append({'Finish': (t_j[i] + t_aux)*60 + 1604868407175,
+                plan.append({'Finish': (t_j[idx] + t_aux)*60 + 1604868407175,
                     'Resource': 'Job {}'.format(i),
-                    'Start': (t_j[i])*60 + 1604868407175,
+                    'Start': (t_j[idx])*60 + 1604868407175,
                     'Task': 'Machine {}'.format(m_aux)})
                 t_j[idx] = t_j[idx] + t_aux
                 t_m[m_aux] = t_j[idx]

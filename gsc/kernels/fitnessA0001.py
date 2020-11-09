@@ -89,7 +89,7 @@ class FitnessA0001():
 
             if t_m[m_aux] > t_j[idx]:
                 plan.append({'Finish': (t_m[m_aux] + t_aux)*60 + 1604868407175,
-                        'Resource': 'Job {}'.format(i),
+                        'Resource': 'Job {}'.format(idx),
                         'Start': (t_m[m_aux])*60 + 1604868407175,
                         'Task': 'Machine {}'.format(m_aux)})
                 t_m[m_aux] = t_m[m_aux] + t_aux
@@ -97,7 +97,7 @@ class FitnessA0001():
 
             else:
                 plan.append({'Finish': (t_j[idx] + t_aux)*60 + 1604868407175,
-                    'Resource': 'Job {}'.format(i),
+                    'Resource': 'Job {}'.format(idx),
                     'Start': (t_j[idx])*60 + 1604868407175,
                     'Task': 'Machine {}'.format(m_aux)})
                 t_j[idx] = t_j[idx] + t_aux

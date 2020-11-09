@@ -9,14 +9,14 @@ setup(
     license="MIT",
     url="https://github.com/mandalarotation/GenSchedulingCuda-GSC",
     package_data={
-        "gsc": [
+        "gen_scheduling_cuda": [
             "py.typed",
             "single_machine.pyi",
             "flow_shop.pyi",
             "job_shop.pyi",
             "operations.pyi",
         ],
-        "gsc.kernels": [
+        "gen_scheduling_cuda.kernels": [
             "py.typed",
             "crossA0001.pyi",
             "fitnessA0001.pyi",
@@ -25,7 +25,7 @@ setup(
             "permutationA0001.pyi",
         ],
     },
-    packages=["gsc", "gsc.kernels"],
+    packages=["gen_scheduling_cuda", "gen_scheduling_cuda.kernels"],
     scripts=[],
     install_requires=["numpy", "cupy", "numba", "typing"],
 )

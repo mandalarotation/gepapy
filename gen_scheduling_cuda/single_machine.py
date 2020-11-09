@@ -5,7 +5,7 @@ import numpy as np
 import cupy as cp
 import math
 
-from gsc.operations import Operations
+from gen_scheduling_cuda.operations import Operations
 
 
 class Single_Machine(Operations):

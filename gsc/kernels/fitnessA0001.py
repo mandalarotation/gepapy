@@ -9,14 +9,14 @@ class FitnessA0001():
     def __init__(self):
         None
 
-    def _fitnessA0001(self,X,d,w,T,M,digits,n_samples,n_machines):
+    def _fitnessA0001(self,x,d,w,T,M,digits,n_samples,n_machines):
         def fitnessAC0001():
             @cuda.jit
-            def kernel(X,T,M,digits,n_samples,n_machines,c_o,t_j,t_m):
+            def kernel(x,T,M,digits,n_samples,n_machines,c_o,t_j,t_m):
                 row = cuda.grid(1)
                 if row < n_samples:
-                    for i in range(X.shape[1]):
-                        idx = int(math.ceil(X[row,i]))
+                    for i in range(x.shape[1]):
+                        idx = int(math.ceil(x[row,i]))
                         t_aux = int(math.ceil(T[row,idx,int(math.ceil(c_o[row,idx]))]))
                         m_aux = int(math.ceil(M[row,idx,int(math.ceil(c_o[row,idx]))]))
                         c_o[row,idx] = c_o[row,idx] + 1
@@ -41,7 +41,7 @@ class FitnessA0001():
             blockspergrid = blockspergrid_x
 
             cuda.synchronize()
-            kernel[blockspergrid, threadsperblock](X,T_expand,M_expand,digits,n_samples,n_machines,c_o_expand,t_j_expand,t_m_expand)
+            kernel[blockspergrid, threadsperblock](x,T_expand,M_expand,digits,n_samples,n_machines,c_o_expand,t_j_expand,t_m_expand)
             cuda.synchronize()
 
             return t_j_expand
@@ -68,3 +68,38 @@ class FitnessA0001():
 
             return {"E_C": E_C, "E_L": E_L, "E_LT": E_LT, "E_U": E_U, "E_Lw": E_Lw, "E_LTw": E_LTw, "E_Uw": E_Uw, "max_C": max_C}
         return fitnessAC0002()
+
+    def _get_planA0001(self,row,X,T,M,digits,n_machines,fact_conv,start_time):
+
+        x = cp.asnumpy(X[row].copy())
+        T = cp.asnumpy(T)
+        M = cp.asnumpy(M)
+        c_o = np.zeros(digits,dtype=int)
+        t_m = np.zeros(n_machines,dtype=int)
+        t_j = np.zeros(digits,dtype=int)
+
+
+        plan = []
+
+        for i in range(x.shape[0]):
+            idx = int(math.ceil(x[i]))
+            t_aux = int(math.ceil(T[idx,int(math.ceil(c_o[idx]))]))
+            m_aux = int(math.ceil(M[idx,int(math.ceil(c_o[idx]))]))
+            c_o[idx] = c_o[idx] + 1
+
+            if t_m[m_aux] > t_j[idx]:
+                plan.append({'Finish': (t_m[m_aux] + t_aux)*fact_conv + start_time,
+                        'Resource': 'Job {}'.format(idx),
+                        'Start': (t_m[m_aux])*fact_conv + start_time,
+                        'Task': 'Machine {}'.format(m_aux)})
+                t_m[m_aux] = t_m[m_aux] + t_aux
+                t_j[idx] = t_m[m_aux]
+
+            else:
+                plan.append({'Finish': (t_j[idx] + t_aux)*fact_conv + start_time,
+                    'Resource': 'Job {}'.format(idx),
+                    'Start': (t_j[idx])*fact_conv + start_time,
+                    'Task': 'Machine {}'.format(m_aux)})
+                t_j[idx] = t_j[idx] + t_aux
+                t_m[m_aux] = t_j[idx]
+        return plan

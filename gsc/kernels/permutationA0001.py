@@ -6,13 +6,35 @@ import math
 
 
 class PermutationA0001:
+    """PermutationA0001."""
+
     def __init__(self) -> None:
+        """__init__.
+
+        :rtype: None
+        """
         pass
 
     def _permutationA0001(
         self, digits: int, repetitions: int, n_samples: int
     ) -> cp.core.core.ndarray:
+        """_permutationA0001.
+
+        :param digits:
+        :type digits: int
+        :param repetitions:
+        :type repetitions: int
+        :param n_samples:
+        :type n_samples: int
+        :rtype: cp.core.core.ndarray
+        """
+
         def permutationAC0001() -> cp.core.core.ndarray:
+            """permutationAC0001.
+
+            :rtype: cp.core.core.ndarray
+            """
+
             @cuda.jit
             def kernel(X: cp.core.core.ndarray, AL: cp.core.core.ndarray) -> None:
                 row = cuda.grid(1)

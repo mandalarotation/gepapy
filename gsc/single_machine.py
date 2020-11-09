@@ -9,6 +9,8 @@ from gsc.operations import Operations
 
 
 class Single_Machine(Operations):
+    """Single_Machine."""
+
     def __init__(
         self,
         processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]],
@@ -24,6 +26,33 @@ class Single_Machine(Operations):
         percent_selection: float = 0.1,
         fitness_type: str = "E_Lw",
     ):
+        """__init__.
+
+        :param processing_time:
+        :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :param due_date:
+        :type due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :param weights:
+        :type weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :param n_samples:
+        :type n_samples: int
+        :param n_jobs:
+        :type n_jobs: int
+        :param percent_cross:
+        :type percent_cross: float
+        :param percent_intra_cross:
+        :type percent_intra_cross: float
+        :param percent_mutation:
+        :type percent_mutation: float
+        :param percent_intra_mutation:
+        :type percent_intra_mutation: float
+        :param percent_migration:
+        :type percent_migration: float
+        :param percent_selection:
+        :type percent_selection: float
+        :param fitness_type:
+        :type fitness_type: str
+        """
         self._n_samples = self.set_n_samples(n_samples)
         self._n_jobs = self._set_n_jobs(n_jobs)
         self._n_machines = 1

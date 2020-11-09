@@ -13,7 +13,13 @@ from gsc.kernels.fitnessA0001 import FitnessA0001
 
 
 class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, FitnessA0001):
-    def __init__(self):
+    """Operations."""
+
+    def __init__(self) -> None:
+        """__init__.
+
+        :rtype: None
+        """
         self._n_samples: int
         self._n_jobs: int
         self._n_machines: int
@@ -33,44 +39,121 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         self._weights: cp.core.core.ndarray
 
     def set_n_samples(self, n_samples: int) -> int:
+        """set_n_samples.
+
+        :param n_samples:
+        :type n_samples: int
+        :rtype: int
+        """
         return n_samples
 
     def _set_n_jobs(self, n_jobs: int) -> int:
+        """_set_n_jobs.
+
+        :param n_jobs:
+        :type n_jobs: int
+        :rtype: int
+        """
         return n_jobs
 
     def _set_n_machines(self, n_machines: int) -> int:
+        """_set_n_machines.
+
+        :param n_machines:
+        :type n_machines: int
+        :rtype: int
+        """
         return n_machines
 
     def _set_n_operations(self, n_operations: int) -> int:
+        """_set_n_operations.
+
+        :param n_operations:
+        :type n_operations: int
+        :rtype: int
+        """
         return n_operations
 
     def _set_fitness_type(self, fitness_type: str) -> str:
+        """_set_fitness_type.
+
+        :param fitness_type:
+        :type fitness_type: str
+        :rtype: str
+        """
         return fitness_type
 
     def set_percent_cross(self, percent_cross: float) -> float:
+        """set_percent_cross.
+
+        :param percent_cross:
+        :type percent_cross: float
+        :rtype: float
+        """
         return percent_cross
 
     def set_percent_intra_cross(self, percent_intra_cros: float) -> float:
+        """set_percent_intra_cross.
+
+        :param percent_intra_cros:
+        :type percent_intra_cros: float
+        :rtype: float
+        """
         return percent_intra_cros
 
     def set_percent_mutation(self, percent_mutation: float) -> float:
+        """set_percent_mutation.
+
+        :param percent_mutation:
+        :type percent_mutation: float
+        :rtype: float
+        """
         return percent_mutation
 
     def set_percent_intra_mutation(self, percent_intra_mutation: float) -> float:
+        """set_percent_intra_mutation.
+
+        :param percent_intra_mutation:
+        :type percent_intra_mutation: float
+        :rtype: float
+        """
         return percent_intra_mutation
 
     def set_percent_migration(self, percent_selection: float) -> float:
+        """set_percent_migration.
+
+        :param percent_selection:
+        :type percent_selection: float
+        :rtype: float
+        """
         return percent_selection
 
     def set_percent_selection(self, percent_migration: float) -> float:
+        """set_percent_selection.
+
+        :param percent_migration:
+        :type percent_migration: float
+        :rtype: float
+        """
         return percent_migration
 
     def _set_fitness(self, fitness: cp.core.core.ndarray) -> None:
+        """_set_fitness.
+
+        :param fitness:
+        :type fitness: cp.core.core.ndarray
+        :rtype: None
+        """
         self._fitness = fitness
 
     def _set_population(
         self, population: Optional[Union[cp.core.core.ndarray, None]] = None
     ):
+        """_set_population.
+
+        :param population:
+        :type population: Optional[Union[cp.core.core.ndarray, None]]
+        """
         if self._population.shape[0] == 0:
             return self.exec_permutationA0001()
         else:
@@ -79,82 +162,182 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
     def _set_processing_time(
         self, processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
+        """_set_processing_time.
+
+        :param processing_time:
+        :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :rtype: cp.core.core.ndarray
+        """
         return cp.array(processing_time, dtype=cp.float32)
 
     def _set_machine_sequence(
         self, machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
+        """_set_machine_sequence.
+
+        :param machine_sequence:
+        :type machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :rtype: cp.core.core.ndarray
+        """
         return cp.array(machine_sequence, dtype=cp.float32)
 
     def _set_due_date(
         self, due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
+        """_set_due_date.
+
+        :param due_date:
+        :type due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :rtype: cp.core.core.ndarray
+        """
         due_date = cp.array(due_date, dtype=cp.float32)
         return due_date
 
     def _set_weights(
         self, weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
+        """_set_weights.
+
+        :param weights:
+        :type weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+        :rtype: cp.core.core.ndarray
+        """
         weights = cp.array(weights, dtype=cp.float32)
         return weights
 
     def get_n_samples(self) -> int:
+        """get_n_samples.
+
+        :rtype: int
+        """
         return self._n_samples
 
     def get_n_jobs(self) -> int:
+        """get_n_jobs.
+
+        :rtype: int
+        """
         return self._n_jobs
 
     def get_n_machines(self) -> int:
+        """get_n_machines.
+
+        :rtype: int
+        """
         return self._n_machines
 
     def get_n_operations(self) -> int:
+        """get_n_operations.
+
+        :rtype: int
+        """
         return self._n_operations
 
     def get_fitness_type(self) -> cp.core.core.ndarray:
+        """get_fitness_type.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._fitness_type
 
     def get_percent_cross(self) -> float:
+        """get_percent_cross.
+
+        :rtype: float
+        """
         return self._percent_cross
 
     def get_percent_intra_cross(self) -> float:
+        """get_percent_intra_cross.
+
+        :rtype: float
+        """
         return self._percent_intra_cross
 
     def get_percent_mutation(self) -> float:
+        """get_percent_mutation.
+
+        :rtype: float
+        """
         return self._percent_mutation
 
     def get_percent_intra_mutation(self) -> float:
+        """get_percent_intra_mutation.
+
+        :rtype: float
+        """
         return self._percent_intra_mutation
 
     def get_percent_migration(self) -> float:
+        """get_percent_migration.
+
+        :rtype: float
+        """
         return self._percent_migration
 
     def get_percent_selection(self) -> float:
+        """get_percent_selection.
+
+        :rtype: float
+        """
         return self._percent_selection
 
     def get_fitness(self) -> cp.core.core.ndarray:
+        """get_fitness.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._fitness
 
     def get_population(self) -> cp.core.core.ndarray:
+        """get_population.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._population
 
     def get_processing_time(self) -> cp.core.core.ndarray:
+        """get_processing_time.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._processing_time
 
     def get_machine_sequence(self) -> cp.core.core.ndarray:
+        """get_machine_sequence.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._machine_sequence
 
     def get_due_date(self) -> cp.core.core.ndarray:
+        """get_due_date.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._due_date
 
     def get_weights(self) -> cp.core.core.ndarray:
+        """get_weights.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._weights
 
     def exec_permutationA0001(self) -> cp.core.core.ndarray:
+        """exec_permutationA0001.
+
+        :rtype: cp.core.core.ndarray
+        """
         return self._permutationA0001(
             self.get_n_jobs(), self.get_n_operations(), self.get_n_samples()
         )
 
     def exec_crossA0001(self) -> None:
+        """exec_crossA0001.
+
+        :rtype: None
+        """
         x_population = cp.copy(self.get_population())
         x_aux = cp.copy(self.get_population())
         index_selection = int(self.get_n_samples() * self.get_percent_selection())
@@ -183,6 +366,10 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             self._set_population(x_aux)
 
     def exec_mutationA0001(self) -> None:
+        """exec_mutationA0001.
+
+        :rtype: None
+        """
         x_population = cp.copy(self.get_population())
         x_aux = cp.copy(self.get_population())
         index_selection = int(self.get_n_samples() * self.get_percent_selection())
@@ -199,6 +386,10 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         self._set_population(x_aux)
 
     def exec_migrationA0001(self) -> None:
+        """exec_migrationA0001.
+
+        :rtype: None
+        """
         x_population = cp.copy(self.get_population())
         x_aux = cp.copy(self.get_population())
         index_selection = int(self.get_n_samples() * self.get_percent_selection())
@@ -211,6 +402,10 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         self._set_population(x_aux)
 
     def exec_sortA0001(self) -> None:
+        """exec_sortA0001.
+
+        :rtype: None
+        """
         x_population = cp.copy(self.get_population())
         x_sort = cp.copy(self.get_fitness())
         y_population, y_sort = self._sortA0001(
@@ -224,6 +419,10 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         self._set_fitness(y_sort)
 
     def exec_fitnessA0001(self) -> None:
+        """exec_fitnessA0001.
+
+        :rtype: None
+        """
         x_population = cp.copy(self.get_population())
         fitness = self._fitnessA0001(
             x_population,
@@ -237,7 +436,17 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         )
         self._set_fitness(fitness[self.get_fitness_type()])
 
-    def get_plan(self, row: int, fact_conv: int, start_time: int) -> dict:
+    def get_plan(self, row: int, fact_conv: int, start_time: int) -> list:
+        """get_plan.
+
+        :param row:
+        :type row: int
+        :param fact_conv:
+        :type fact_conv: int
+        :param start_time:
+        :type start_time: int
+        :rtype: dict
+        """
         x_population = cp.copy(self.get_population())
         return self._get_planA0001(
             row,

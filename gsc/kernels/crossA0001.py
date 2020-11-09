@@ -6,7 +6,13 @@ import math
 
 
 class CrossA0001:
+    """CrossA0001."""
+
     def __init__(self) -> None:
+        """__init__.
+
+        :rtype: None
+        """
         pass
 
     def _crossA0001(
@@ -15,9 +21,29 @@ class CrossA0001:
         digits: int,
         repetitions: int,
         n_samples: int,
-        percent_c: int,
+        percent_c: float,
     ) -> cp.core.core.ndarray:
+        """_crossA0001.
+
+        :param X:
+        :type X: cp.core.core.ndarray
+        :param digits:
+        :type digits: int
+        :param repetitions:
+        :type repetitions: int
+        :param n_samples:
+        :type n_samples: int
+        :param percent_c:
+        :type percent_c: float
+        :rtype: cp.core.core.ndarray
+        """
+
         def crossAC0001() -> cp.core.core.ndarray:
+            """crossAC0001.
+
+            :rtype: cp.core.core.ndarray
+            """
+
             @cuda.jit
             def kernel(
                 X: cp.core.core.ndarray,
@@ -25,6 +51,18 @@ class CrossA0001:
                 x_dim_1: int,
                 percent_c: float,
             ) -> None:
+                """kernel.
+
+                :param X:
+                :type X: cp.core.core.ndarray
+                :param X_AUX:
+                :type X_AUX: cp.core.core.ndarray
+                :param x_dim_1:
+                :type x_dim_1: int
+                :param percent_c:
+                :type percent_c: float
+                :rtype: None
+                """
                 row = cuda.grid(1)
                 if row < n_samples:
                     if row % 2 == 0:
@@ -49,6 +87,11 @@ class CrossA0001:
             return X_AUX
 
         def crossAC0002() -> cp.core.core.ndarray:
+            """crossAC0002.
+
+            :rtype: cp.core.core.ndarray
+            """
+
             @cuda.jit
             def kernel(
                 X_AUX: cp.core.core.ndarray,
@@ -58,6 +101,22 @@ class CrossA0001:
                 x_dim_1: int,
                 percent_c: float,
             ) -> None:
+                """kernel.
+
+                :param X_AUX:
+                :type X_AUX: cp.core.core.ndarray
+                :param C_M:
+                :type C_M: cp.core.core.ndarray
+                :param digits:
+                :type digits: int
+                :param repetitions:
+                :type repetitions: int
+                :param x_dim_1:
+                :type x_dim_1: int
+                :param percent_c:
+                :type percent_c: float
+                :rtype: None
+                """
                 row = cuda.grid(1)
                 if row < n_samples:
                     if row % 2 == 0:
@@ -94,6 +153,11 @@ class CrossA0001:
             return C_M
 
         def crossAC0003() -> cp.core.core.ndarray:
+            """crossAC0003.
+
+            :rtype: cp.core.core.ndarray
+            """
+
             @cuda.jit
             def kernel(
                 X: cp.core.core.ndarray,
@@ -104,6 +168,23 @@ class CrossA0001:
                 x_dim_1: int,
                 percent_c: float,
             ):
+                """kernel.
+
+                :param X:
+                :type X: cp.core.core.ndarray
+                :param X_AUX:
+                :type X_AUX: cp.core.core.ndarray
+                :param C_M:
+                :type C_M: cp.core.core.ndarray
+                :param digits:
+                :type digits: int
+                :param repetitions:
+                :type repetitions: int
+                :param x_dim_1:
+                :type x_dim_1: int
+                :param percent_c:
+                :type percent_c: float
+                """
                 row = cuda.grid(1)
                 if row < n_samples:
                     if row % 2 == 0:

@@ -6,7 +6,13 @@ import math
 
 
 class FitnessA0001:
+    """FitnessA0001."""
+
     def __init__(self) -> None:
+        """__init__.
+
+        :rtype: None
+        """
         pass
 
     def _fitnessA0001(
@@ -20,7 +26,30 @@ class FitnessA0001:
         n_samples: int,
         n_machines: int,
     ) -> cp.core.core.ndarray:
+        """_fitnessA0001.
+
+        :param x:
+        :type x: cp.core.core.ndarray
+        :param d:
+        :type d: cp.core.core.ndarray
+        :param w:
+        :type w: cp.core.core.ndarray
+        :param T:
+        :type T: cp.core.core.ndarray
+        :param M:
+        :type M: cp.core.core.ndarray
+        :param digits:
+        :type digits: int
+        :param n_samples:
+        :type n_samples: int
+        :param n_machines:
+        :type n_machines: int
+        :rtype: cp.core.core.ndarray
+        """
+
         def fitnessAC0001():
+            """fitnessAC0001."""
+
             @cuda.jit
             def kernel(x, T, M, digits, n_samples, n_machines, c_o, t_j, t_m):
                 row = cuda.grid(1)
@@ -77,6 +106,10 @@ class FitnessA0001:
         C = fitnessAC0001()
 
         def fitnessAC0002() -> dict:
+            """fitnessAC0002.
+
+            :rtype: dict
+            """
             d_expand = cp.array(
                 cp.repeat(cp.expand_dims(d, axis=0), n_samples, axis=0),
                 dtype=cp.float32,
@@ -124,6 +157,26 @@ class FitnessA0001:
         fact_conv: float,
         start_time: int,
     ) -> list:
+        """_get_planA0001.
+
+        :param row:
+        :type row: int
+        :param X:
+        :type X: cp.core.core.ndarray
+        :param T:
+        :type T: cp.core.core.ndarray
+        :param M:
+        :type M: cp.core.core.ndarray
+        :param digits:
+        :type digits: int
+        :param n_machines:
+        :type n_machines: int
+        :param fact_conv:
+        :type fact_conv: float
+        :param start_time:
+        :type start_time: int
+        :rtype: list
+        """
 
         x = cp.asnumpy(X[row].copy())
         T = cp.asnumpy(T)

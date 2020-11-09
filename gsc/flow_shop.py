@@ -1,5 +1,5 @@
-from typing import Union, Optional
 from __future__ import division
+from typing import Union, Optional
 from numba import cuda
 import numpy as np
 import cupy as cp

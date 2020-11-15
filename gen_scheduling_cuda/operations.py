@@ -110,7 +110,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             return fitness_type
 
     @Check._set_percent_cross_check
-    def set_percent_cross(self, percent_cross: float) -> Optional[Union[None, float]]:
+    def _set_percent_cross(self, percent_cross: float) -> Optional[Union[None, float]]:
         """set_percent_cross.
 
         :param percent_cross:
@@ -140,7 +140,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             return percent_intra_cross
 
     @Check._set_percent_mutation_check
-    def set_percent_mutation(
+    def _set_percent_mutation(
         self, percent_mutation: float
     ) -> Optional[Union[None, float]]:
         """set_percent_mutation.
@@ -172,7 +172,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             return percent_intra_mutation
 
     @Check._set_percent_migration_check
-    def set_percent_migration(
+    def _set_percent_migration(
         self, percent_selection: float
     ) -> Optional[Union[None, float]]:
         """set_percent_migration.
@@ -188,7 +188,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             return percent_selection
 
     @Check._set_percent_selection_check
-    def set_percent_selection(
+    def _set_percent_selection(
         self, percent_migration: float
     ) -> Optional[Union[None, float]]:
         """set_percent_selection.
@@ -204,7 +204,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             return percent_migration
 
     @Check._set_fitness_check
-    def set_fitness(
+    def _set_fitness(
         self, fitness: cp.core.core.ndarray
     ) -> Optional[Union[None, cp.core.core.ndarray]]:
         """_set_fitness.
@@ -495,7 +495,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             self.get_n_samples(),
         )
         self.set_population(y_population)
-        self.set_fitness(y_sort)
+        self._set_fitness(y_sort)
 
     def exec_fitnessA0001(self) -> None:
         """exec_fitnessA0001.
@@ -513,7 +513,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
             self.get_n_samples(),
             self.get_n_machines(),
         )
-        self.set_fitness(fitness[self.get_fitness_type()])
+        self._set_fitness(fitness[self.get_fitness_type()])
 
     def get_plan(self, row: int, fact_conv: int, start_time: int) -> list:
         """get_plan.

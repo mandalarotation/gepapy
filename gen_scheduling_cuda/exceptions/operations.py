@@ -44,169 +44,399 @@ class SetException(Exception):
 
 class Check:
     def __inti__(self) -> None:
+        """__inti__.
+
+        :rtype: None
+        """
         pass
 
     @classmethod
     def _set_n_samples_check(self, f: TFun) -> TFun:
+        """_set_n_samples_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(n_samples: int) -> Optional[Union[None, int]]:
+        def wrapper(self, n_samples: int) -> Optional[Union[None, int]]:
+            """wrapper.
+
+            :param n_samples:
+            :type n_samples: int
+            :rtype: Optional[Union[None, int]]
+            """
             print("estoy decorada")
-            return f(n_samples)
+            return f(self, n_samples)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_n_jobs_check(self, f: TFun) -> TFun:
+        """_set_n_jobs_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(n_jobs: int) -> Optional[Union[None, int]]:
+        def wrapper(self, n_jobs: int) -> Optional[Union[None, int]]:
+            """wrapper.
+
+            :param n_jobs:
+            :type n_jobs: int
+            :rtype: Optional[Union[None, int]]
+            """
             print("estoy decorada")
-            return f(n_jobs)
+            return f(self, n_jobs)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_n_machines_check(self, f: TFun) -> TFun:
+        """_set_n_machines_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(n_machines: int) -> Optional[Union[None, int]]:
+        def wrapper(self, n_machines: int) -> Optional[Union[None, int]]:
+            """wrapper.
+
+            :param n_machines:
+            :type n_machines: int
+            :rtype: Optional[Union[None, int]]
+            """
             print("estoy decorada")
-            return f(n_machines)
+            return f(self, n_machines)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_n_operations_check(self, f: TFun) -> TFun:
+        """_set_n_operations_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(n_operations: int) -> Optional[Union[None, int]]:
+        def wrapper(self, n_operations: int) -> Optional[Union[None, int]]:
+            """wrapper.
+
+            :param n_operations:
+            :type n_operations: int
+            :rtype: Optional[Union[None, int]]
+            """
             print("estoy decorada")
-            return f(n_operations)
+            return f(self, n_operations)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_fitness_type_check(self, f: TFun) -> TFun:
+        """_set_fitness_type_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(fitness_type: str) -> Optional[Union[None, str]]:
+        def wrapper(self, fitness_type: str) -> Optional[Union[None, str]]:
+            """wrapper.
+
+            :param fitness_type:
+            :type fitness_type: str
+            :rtype: Optional[Union[None, str]]
+            """
             print("estoy decorada")
-            return f(fitness_type)
+            return f(self, fitness_type)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_percent_cross_check(self, f: TFun) -> TFun:
+        """_set_percent_cross_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(percent_cross: float) -> Optional[Union[None, float]]:
+        def wrapper(self, percent_cross: float) -> Optional[Union[None, float]]:
+            """wrapper.
+
+            :param percent_cross:
+            :type percent_cross: float
+            :rtype: Optional[Union[None, float]]
+            """
             print("estoy decorada")
-            return f(percent_cross)
+            return f(self, percent_cross)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_percent_intra_cross_check(self, f: TFun) -> TFun:
+        """_set_percent_intra_cross_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(percent_intra_cross: float) -> Optional[Union[None, float]]:
+        def wrapper(self, percent_intra_cross: float) -> Optional[Union[None, float]]:
+            """wrapper.
+
+            :param percent_intra_cross:
+            :type percent_intra_cross: float
+            :rtype: Optional[Union[None, float]]
+            """
             print("estoy decorada")
-            return f(percent_intra_cross)
+            return f(self, percent_intra_cross)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_percent_mutation_check(self, f: TFun) -> TFun:
+        """_set_percent_mutation_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(percent_mutation: float) -> Optional[Union[None, float]]:
+        def wrapper(self, percent_mutation: float) -> Optional[Union[None, float]]:
+            """wrapper.
+
+            :param percent_mutation:
+            :type percent_mutation: float
+            :rtype: Optional[Union[None, float]]
+            """
             print("estoy decorada")
-            return f(percent_mutation)
+            return f(self, percent_mutation)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_percent_intra_mutation_check(self, f: TFun) -> TFun:
+        """_set_percent_intra_mutation_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(percent_intra_mutation: float) -> Optional[Union[None, float]]:
+        def wrapper(
+            self, percent_intra_mutation: float
+        ) -> Optional[Union[None, float]]:
+            """wrapper.
+
+            :param percent_intra_mutation:
+            :type percent_intra_mutation: float
+            :rtype: Optional[Union[None, float]]
+            """
             print("estoy decorada")
-            return f(percent_intra_mutation)
+            return f(self, percent_intra_mutation)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_percent_migration_check(self, f: TFun) -> TFun:
+        """_set_percent_migration_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(percent_migration: float) -> Optional[Union[None, float]]:
+        def wrapper(self, percent_migration: float) -> Optional[Union[None, float]]:
+            """wrapper.
+
+            :param percent_migration:
+            :type percent_migration: float
+            :rtype: Optional[Union[None, float]]
+            """
             print("estoy decorada")
-            return f(percent_migration)
+            return f(self, percent_migration)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_percent_selection_check(self, f: TFun) -> TFun:
+        """_set_percent_selection_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
-        def wrapper(percent_selection: float) -> Optional[Union[None, float]]:
+        def wrapper(self, percent_selection: float) -> Optional[Union[None, float]]:
+            """wrapper.
+
+            :param percent_selection:
+            :type percent_selection: float
+            :rtype: Optional[Union[None, float]]
+            """
             print("estoy decorada")
-            return f(percent_selection)
+            return f(self, percent_selection)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_fitness_check(self, f: TFun) -> TFun:
+        """_set_fitness_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
         def wrapper(
+            self,
             fitness: cp.core.core.ndarray,
         ) -> Optional[Union[None, cp.core.core.ndarray]]:
+            """wrapper.
+
+            :param fitness:
+            :type fitness: cp.core.core.ndarray
+            :rtype: Optional[Union[None, cp.core.core.ndarray]]
+            """
             print("estoy decorada")
-            return f(fitness)
+            return f(self, fitness)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_population_check(self, f: TFun) -> TFun:
+        """_set_population_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
         def wrapper(
-            population: Optional[Union[cp.core.core.ndarray, None]] = None
+            self, population: Optional[Union[cp.core.core.ndarray, None]] = None
         ) -> Optional[Union[None, cp.core.core.ndarray]]:
+            """wrapper.
+
+            :param population:
+            :type population: Optional[Union[cp.core.core.ndarray, None]]
+            :rtype: Optional[Union[None, cp.core.core.ndarray]]
+            """
             print("estoy decorada")
-            return f(population)
+            return f(self, population)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_processing_time_check(self, f: TFun) -> TFun:
+        """_set_processing_time_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
         def wrapper(
-            processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            self,
+            processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]],
         ) -> cp.core.core.ndarray:
+            """wrapper.
+
+            :param processing_time:
+            :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            :rtype: cp.core.core.ndarray
+            """
             print("estoy decorada")
-            return f(processing_time)
+            return f(self, processing_time)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_machine_sequence_check(self, f: TFun) -> TFun:
+        """_set_machine_sequence_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
         def wrapper(
-            machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            self,
+            machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]],
         ) -> cp.core.core.ndarray:
+            """wrapper.
+
+            :param machine_sequence:
+            :type machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            :rtype: cp.core.core.ndarray
+            """
             print("estoy decorada")
-            return f(machine_sequence)
+            return f(self, machine_sequence)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_due_date_check(self, f: TFun) -> TFun:
+        """_set_due_date_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
         def wrapper(
-            due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            self, due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
         ) -> cp.core.core.ndarray:
+            """wrapper.
+
+            :param due_date:
+            :type due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            :rtype: cp.core.core.ndarray
+            """
             print("estoy decorada")
-            return f(due_date)
+            return f(self, due_date)
 
         return cast(TFun, wrapper)
 
     @classmethod
     def _set_weights_check(self, f: TFun) -> TFun:
+        """_set_weights_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
         @wraps(f)
         def wrapper(
-            weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            self, weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
         ) -> cp.core.core.ndarray:
+            """wrapper.
+
+            :param weights:
+            :type weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+            :rtype: cp.core.core.ndarray
+            """
             print("estoy decorada")
-            return f(weights)
+            return f(self, weights)
 
         return cast(TFun, wrapper)

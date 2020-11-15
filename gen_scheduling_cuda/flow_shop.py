@@ -62,9 +62,9 @@ class Flow_Shop(Operations):
         """
         self._initialized = False
         self._n_samples = self.set_n_samples(n_samples)
-        self._n_jobs = self.set_n_jobs(n_jobs)
-        self._n_machines = self.set_n_machines(n_machines)
-        self._n_operations = self.set_n_operations(n_operations)
+        self._n_jobs = self._set_n_jobs(n_jobs)
+        self._n_machines = self._set_n_machines(n_machines)
+        self._n_operations = self._set_n_operations(n_operations)
         self._fitness_type = self.set_fitness_type(fitness_type)
         self._processing_time = self._set_processing_time(processing_time)
         self._machine_sequence = self._set_machine_sequence(machine_sequence)

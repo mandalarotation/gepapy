@@ -50,7 +50,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_samples
 
-    def set_n_jobs(self, n_jobs: int) -> Optional[Union[None, int]]:
+    def _set_n_jobs(self, n_jobs: int) -> Optional[Union[None, int]]:
         """_set_n_jobs.
 
         :param n_jobs:
@@ -63,7 +63,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_jobs
 
-    def set_n_machines(self, n_machines: int) -> Optional[Union[None, int]]:
+    def _set_n_machines(self, n_machines: int) -> Optional[Union[None, int]]:
         """_set_n_machines.
 
         :param n_machines:
@@ -76,7 +76,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_machines
 
-    def set_n_operations(self, n_operations: int) -> Optional[Union[None, int]]:
+    def _set_n_operations(self, n_operations: int) -> Optional[Union[None, int]]:
         """_set_n_operations.
 
         :param n_operations:

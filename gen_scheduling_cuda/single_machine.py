@@ -53,7 +53,7 @@ class Single_Machine(Operations):
         """
         self._initialized = False
         self._n_samples = self.set_n_samples(n_samples)
-        self._n_jobs = self.set_n_jobs(n_jobs)
+        self._n_jobs = self._set_n_jobs(n_jobs)
         self._n_machines = 1
         self._n_operations = 1
         self._fitness_type = self.set_fitness_type(fitness_type)

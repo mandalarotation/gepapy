@@ -194,7 +194,7 @@ class Check:
             ]
             if not (fitness_type in fitness_list):
                 raise SetException(
-                    "type(fitness_type) -> {} ; expected -> ['E_C','E_L','E_LT','E_U','E_Lw','E_LTw','E_Uw','max_C']".format(  # noqa: E501
+                    "fitness_type -> {} ; expected -> str in  ['E_C','E_L','E_LT','E_U','E_Lw','E_LTw','E_Uw','max_C']".format(  # noqa: E501
                         type(fitness_type)
                     )
                 )

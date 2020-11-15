@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup  # type: ignore
 
 setup(
     name="gen_scheduling_cuda",
@@ -25,7 +25,11 @@ setup(
             "permutationA0001.pyi",
         ],
     },
-    packages=["gen_scheduling_cuda", "gen_scheduling_cuda.kernels"],
+    packages=[
+        "gen_scheduling_cuda",
+        "gen_scheduling_cuda.kernels",
+        "gen_scheduling_cuda.exceptions",
+    ],
     scripts=[],
     install_requires=["numpy", "cupy", "numba", "typing"],
 )

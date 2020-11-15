@@ -460,11 +460,12 @@ class Check:
             :rtype: Optional[Union[None, cp.core.core.ndarray]]
             """
             if type(population) != cp.core.core.ndarray:
-                raise SetException(
-                    "type(population) -> {} ; expected -> <class 'cp.core.core.ndarray'>".format(
-                        type(population)
+                if not (population is None):
+                    raise SetException(
+                        "type(population) -> {} ; expected -> <class 'cp.core.core.ndarray'>".format(
+                            type(population)
+                        )
                     )
-                )
             return f(self, population)
 
         return cast(TFun, wrapper)

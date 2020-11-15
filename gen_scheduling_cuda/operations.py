@@ -1,9 +1,7 @@
 from __future__ import division
 from typing import Optional, Union
-from numba import cuda  # type: ignore
 import numpy as np  # type: ignore
 import cupy as cp  # type: ignore
-import math
 
 from gen_scheduling_cuda.kernels.permutationA0001 import PermutationA0001
 from gen_scheduling_cuda.kernels.crossA0001 import CrossA0001

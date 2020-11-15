@@ -21,7 +21,7 @@ class MutationA0001:
         repetitions: int,
         n_samples: int,
         percent_m: float,
-    ):
+    ) -> cp.core.core.ndarray:
         """_mutationA0001.
 
         :param X:

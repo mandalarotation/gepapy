@@ -1,8 +1,5 @@
 from __future__ import division
-from numba import cuda
-import numpy as np
-import cupy as cp
-import math
+import cupy as cp  # type: ignore
 
 
 class SortA0001:

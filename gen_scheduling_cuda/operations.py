@@ -3,6 +3,8 @@ from typing import Optional, Union
 import numpy as np  # type: ignore
 import cupy as cp  # type: ignore
 
+
+from gen_scheduling_cuda.exceptions.operations import Check
 from gen_scheduling_cuda.kernels.permutationA0001 import PermutationA0001
 from gen_scheduling_cuda.kernels.crossA0001 import CrossA0001
 from gen_scheduling_cuda.kernels.mutationA0001 import MutationA0001
@@ -37,6 +39,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         self._due_date: cp.core.core.ndarray
         self._weights: cp.core.core.ndarray
 
+    @Check._set_n_samples_check
     def set_n_samples(self, n_samples: int) -> Optional[Union[None, int]]:
         """set_n_samples.
 
@@ -50,6 +53,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_samples
 
+    @Check._set_n_jobs_check
     def _set_n_jobs(self, n_jobs: int) -> Optional[Union[None, int]]:
         """_set_n_jobs.
 
@@ -63,6 +67,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_jobs
 
+    @Check._set_n_machines_check
     def _set_n_machines(self, n_machines: int) -> Optional[Union[None, int]]:
         """_set_n_machines.
 
@@ -76,6 +81,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_machines
 
+    @Check._set_n_operations_check
     def _set_n_operations(self, n_operations: int) -> Optional[Union[None, int]]:
         """_set_n_operations.
 
@@ -89,6 +95,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return n_operations
 
+    @Check._set_fitness_type_check
     def set_fitness_type(self, fitness_type: str) -> Optional[Union[None, str]]:
         """_set_fitness_type.
 
@@ -102,6 +109,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return fitness_type
 
+    @Check._set_percent_cross_check
     def set_percent_cross(self, percent_cross: float) -> Optional[Union[None, float]]:
         """set_percent_cross.
 
@@ -115,6 +123,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return percent_cross
 
+    @Check._set_percent_intra_cross_check
     def set_percent_intra_cross(
         self, percent_intra_cross: float
     ) -> Optional[Union[None, float]]:
@@ -130,6 +139,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return percent_intra_cross
 
+    @Check._set_percent_mutation_check
     def set_percent_mutation(
         self, percent_mutation: float
     ) -> Optional[Union[None, float]]:
@@ -145,6 +155,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return percent_mutation
 
+    @Check._set_percent_intra_mutation_check
     def set_percent_intra_mutation(
         self, percent_intra_mutation: float
     ) -> Optional[Union[None, float]]:
@@ -160,6 +171,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return percent_intra_mutation
 
+    @Check._set_percent_migration_check
     def set_percent_migration(
         self, percent_selection: float
     ) -> Optional[Union[None, float]]:
@@ -175,6 +187,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return percent_selection
 
+    @Check._set_percent_selection_check
     def set_percent_selection(
         self, percent_migration: float
     ) -> Optional[Union[None, float]]:
@@ -190,6 +203,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return percent_migration
 
+    @Check._set_fitness_check
     def set_fitness(
         self, fitness: cp.core.core.ndarray
     ) -> Optional[Union[None, cp.core.core.ndarray]]:
@@ -205,6 +219,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return fitness
 
+    @Check._set_population_check
     def set_population(
         self, population: Optional[Union[cp.core.core.ndarray, None]] = None
     ) -> Optional[Union[None, cp.core.core.ndarray]]:
@@ -219,6 +234,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         else:
             return self.exec_permutationA0001()
 
+    @Check._set_processing_time_check
     def _set_processing_time(
         self, processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
@@ -230,6 +246,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         """
         return cp.array(processing_time, dtype=cp.float32)
 
+    @Check._set_machine_sequence_check
     def _set_machine_sequence(
         self, machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
@@ -241,6 +258,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         """
         return cp.array(machine_sequence, dtype=cp.float32)
 
+    @Check._set_due_date_check
     def _set_due_date(
         self, due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:
@@ -253,6 +271,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         due_date = cp.array(due_date, dtype=cp.float32)
         return due_date
 
+    @Check._set_weights_check
     def _set_weights(
         self, weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
     ) -> cp.core.core.ndarray:

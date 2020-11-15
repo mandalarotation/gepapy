@@ -46,6 +46,7 @@ class Check:
     def __inti__(self) -> None:
         pass
 
+    @classmethod
     def _set_n_samples_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(n_samples: int) -> Optional[Union[None, int]]:
@@ -54,6 +55,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_n_jobs_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(n_jobs: int) -> Optional[Union[None, int]]:
@@ -62,6 +64,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_n_machines_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(n_machines: int) -> Optional[Union[None, int]]:
@@ -70,6 +73,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_n_operations_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(n_operations: int) -> Optional[Union[None, int]]:
@@ -78,6 +82,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_fitness_type_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(fitness_type: str) -> Optional[Union[None, str]]:
@@ -86,6 +91,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_percent_cross_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(percent_cross: float) -> Optional[Union[None, float]]:
@@ -94,6 +100,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_percent_intra_cross_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(percent_intra_cross: float) -> Optional[Union[None, float]]:
@@ -102,6 +109,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_percent_mutation_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(percent_mutation: float) -> Optional[Union[None, float]]:
@@ -110,6 +118,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_percent_intra_mutation_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(percent_intra_mutation: float) -> Optional[Union[None, float]]:
@@ -118,6 +127,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_percent_migration_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(percent_migration: float) -> Optional[Union[None, float]]:
@@ -126,6 +136,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_percent_selection_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(percent_selection: float) -> Optional[Union[None, float]]:
@@ -134,6 +145,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_fitness_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(
@@ -144,6 +156,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_population_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(
@@ -154,6 +167,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_processing_time_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(
@@ -164,6 +178,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_machine_sequence_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(
@@ -174,6 +189,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_due_date_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(
@@ -184,6 +200,7 @@ class Check:
 
         return cast(TFun, wrapper)
 
+    @classmethod
     def _set_weights_check(self, f: TFun) -> TFun:
         @wraps(f)
         def wrapper(

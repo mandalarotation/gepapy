@@ -67,7 +67,10 @@ class Check:
             :type n_samples: int
             :rtype: Optional[Union[None, int]]
             """
-            print("estoy decorada")
+            if type(n_samples) != int:
+                raise SetException(
+                    "type(n_samples) -> {} ; expected -> int".format(type(n_samples))
+                )
             return f(self, n_samples)
 
         return cast(TFun, wrapper)
@@ -438,5 +441,45 @@ class Check:
             """
             print("estoy decorada")
             return f(self, weights)
+
+        return cast(TFun, wrapper)
+
+    @classmethod
+    def _set_percents_c_m_m_s_check(self, f: TFun) -> TFun:
+        """_set_percent_mutation_check.
+
+        :param f:
+        :type f: TFun
+        :rtype: TFun
+        """
+
+        @wraps(f)
+        def wrapper(
+            self,
+            percent_cross: float,
+            percent_mutation: float,
+            percent_migration: float,
+            percent_selection: float,
+        ) -> None:
+            """wrapper.
+
+            :param percent_cross:
+            :type percent_cross: float
+            :param percent_mutation:
+            :type percent_mutation: float
+            :param percent_migration:
+            :type percent_migration: float
+            :param percent_selection:
+            :type percent_selection: float
+            :rtype: None
+            """
+            print("estoy decorada")
+            return f(
+                self,
+                percent_cross,
+                percent_mutation,
+                percent_migration,
+                percent_selection,
+            )
 
         return cast(TFun, wrapper)

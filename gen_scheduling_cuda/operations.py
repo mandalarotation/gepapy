@@ -284,6 +284,19 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         weights = cp.array(weights, dtype=cp.float32)
         return weights
 
+    @Check._set_percents_c_m_m_s_check
+    def set_percents_c_m_m_s(
+        self,
+        percent_cross: float,
+        percent_mutation: float,
+        percent_migration: float,
+        percent_selection: float,
+    ) -> None:
+        self._set_percent_cross(percent_cross)
+        self._set_percent_mutation(percent_mutation)
+        self._set_percent_migration(percent_migration)
+        self._set_percent_selection(percent_selection)
+
     def get_n_samples(self) -> int:
         """get_n_samples.
 

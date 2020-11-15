@@ -634,12 +634,12 @@ class Check:
             :rtype: None
             """
             if (
-                percent_cross > percent_selection
-                or percent_mutation > percent_selection
-                or percent_migration > percent_selection
+                percent_cross > 1 - percent_selection
+                or percent_mutation > 1 - percent_selection
+                or percent_migration > 1 - percent_selection
             ):
                 raise SetException(
-                    "False ; expected ->  True  where percent_cross <= percent_selection and percent_mutation <= percent_selection and percent_migration <= percent_selection"  # noqa: E501
+                    "False ; expected ->  True  where percent_cross <= 1 - percent_selection and percent_mutation <= 1 - percent_selection and percent_migration <= 1 - percent_selection"  # noqa: E501
                 )
             return f(
                 self,

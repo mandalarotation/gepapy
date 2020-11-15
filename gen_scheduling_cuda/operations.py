@@ -456,7 +456,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
                 index_cross,
                 self.get_percent_intra_cross(),
             )
-            x_aux[index_selection:, :][0:index_cross, :] = y_population
+            x_aux[index_selection:, :][-index_cross:, :] = y_population
             self.set_population(x_aux)
         else:
             index_cross -= 1
@@ -467,7 +467,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
                 self.get_n_samples(),
                 self.get_percent_intra_cross(),
             )
-            x_aux[index_selection:, :][0:index_cross, :] = y_population
+            x_aux[index_selection:, :][-index_cross:, :] = y_population
             self.set_population(x_aux)
 
     def exec_mutationA0001(self) -> None:
@@ -481,7 +481,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         index_mutation = int(self.get_n_samples() * self.get_percent_mutation())
         cp.random.shuffle(x_population)
         y_population = self._mutationA0001(
-            x_population[index_selection:, :][0:index_mutation, :],
+            x_population[index_selection:, :][-index_mutation:, :],
             self.get_n_jobs(),
             self.get_n_operations(),
             index_mutation,
@@ -503,7 +503,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         y_population = self._permutationA0001(
             self.get_n_jobs(), self.get_n_operations(), index_migration
         )
-        x_aux[index_selection:, :][0:index_migration, :] = y_population
+        x_aux[index_selection:, :][-index_migration:, :] = y_population
         self.set_population(x_aux)
 
     def exec_sortA0001(self) -> None:

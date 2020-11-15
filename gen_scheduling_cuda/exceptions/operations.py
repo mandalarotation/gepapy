@@ -639,7 +639,7 @@ class Check:
                 or percent_migration > percent_selection
             ):
                 raise SetException(
-                    "False ; expected ->  True  where percent_cross < percent_selection and percent_mutation < percent_selection and percent_migration < percent_selection"  # noqa: E501
+                    "False ; expected ->  True  where percent_cross <= percent_selection and percent_mutation <= percent_selection and percent_migration <= percent_selection"  # noqa: E501
                 )
             return f(
                 self,

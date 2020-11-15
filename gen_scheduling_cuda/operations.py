@@ -303,7 +303,7 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         :param percent_selection:
         :type percent_selection: float
         :rtype: None
-        :constraint: percent_cross and percent_mutation and percent_migration < percent_selection
+        :constraint: percent_cross and percent_mutation and percent_migration <= percent_selection
         """
         self._set_percent_cross(percent_cross)
         self._set_percent_mutation(percent_mutation)

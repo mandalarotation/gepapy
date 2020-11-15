@@ -292,6 +292,19 @@ class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, Fitness
         percent_migration: float,
         percent_selection: float,
     ) -> None:
+        """set_percents_c_m_m_s.
+
+        :param percent_cross:
+        :type percent_cross: float
+        :param percent_mutation:
+        :type percent_mutation: float
+        :param percent_migration:
+        :type percent_migration: float
+        :param percent_selection:
+        :type percent_selection: float
+        :rtype: None
+        :constraint: percent_cross and percent_mutation and percent_migration < percent_selection
+        """
         self._set_percent_cross(percent_cross)
         self._set_percent_mutation(percent_mutation)
         self._set_percent_migration(percent_migration)

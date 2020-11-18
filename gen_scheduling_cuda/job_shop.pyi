@@ -1,7 +1,6 @@
-import cupy as cp
-import numpy as np
+import cupy as cp  # type: ignore
+import numpy as np  # type: ignore
 from gen_scheduling_cuda.operations import Operations as Operations
-from numba import cuda as cuda
 from typing import Optional, Union
 
 class Job_Shop(Operations):

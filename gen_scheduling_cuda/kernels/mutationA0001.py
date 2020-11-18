@@ -1,7 +1,6 @@
 from __future__ import division
-from numba import cuda
-import numpy as np
-import cupy as cp
+from numba import cuda  # type: ignore
+import cupy as cp  # type: ignore
 import math
 
 
@@ -22,7 +21,7 @@ class MutationA0001:
         repetitions: int,
         n_samples: int,
         percent_m: float,
-    ):
+    ) -> cp.core.core.ndarray:
         """_mutationA0001.
 
         :param X:

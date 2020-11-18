@@ -2,7 +2,7 @@ from setuptools import setup  # type: ignore
 
 setup(
     name="gen_scheduling_cuda",
-    version="1.1.1",
+    version="1.1.2",
     description="Developing a library with Cuda and Python for solving scheduling problems on GPU",
     author="Jean Carlo Jimenez Giraldo",
     author_email="mandalarotation@gmail.com",

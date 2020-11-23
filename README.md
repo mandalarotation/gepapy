@@ -33,17 +33,17 @@ In the case of Google Colab, the cuda environment is already configured, so it i
 It is recommended to use docker technology and use a preconfigured image by Nvidia so that you do not have to manually install all the cuda libraries and do not have to resolve possible incompatibilities one by one in the installation process, which usually becomes quite tedious. Since docker is cross-platform so it works on a wide range of operating systems and it is enough to refer to the following nvidia repository https://github.com/NVIDIA/nvidia-docker and follow the instructions, then the image can be modified to install python and their respective libraries, as well as a jupyter server if you want to use it from a notebook https://docs.docker.com/. Another alternative is to install an environment with ANCONDA that supports cuda https://www.anaconda.com/. After configuring the environment with support for cuda, just run the following commands to install the library automatically from the pypi repositories.
 
 ```
-# Si ya se encuentran instaladas las librerias, typing, numpy, cupy,  y numba y configurado el ambiente para cuda
+# If the libraries, typing, numpy, cupy, and numba are already installed and the environment configured for cuda
 pip install gepapy --no-deps 
 ```
 
 ```
-# Si no se encuentran instalada alguna de las librerias, typing, numpy, cupy,  y numba
+# If any of the libraries are not installed, typing, numpy, cupy, and numba
 pip install gepapy 
 ```
 
 ```
-# si se quieren visualizar graficos de Gantt
+# if you want to view Gantt charts
 pip install chart_studio
 ```
 

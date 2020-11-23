@@ -244,6 +244,7 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
 .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png
 
 .. code:: python
+
   import chart_studio.plotly as py
   import plotly.figure_factory as ff
 

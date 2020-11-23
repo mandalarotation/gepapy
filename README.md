@@ -130,8 +130,9 @@ The objective of this project is to develop a library that allows to solve vario
 #####  get_percent_selection.
   ######       :rtype: float
         
-#####  get_fitness.
-        :rtype: cp.core.core.ndarray
+#####  get_fitness
+    
+######    :rtype: cp.core.core.ndarray
         
 #####  get_population.
   ######      :rtype: cp.core.core.ndarray
@@ -151,9 +152,31 @@ The objective of this project is to develop a library that allows to solve vario
    
   
   #### operation methods
+  
+ ##### exec_permutationA0001.
+ ######        :rtype: cp.core.core.ndarray
+  
+#####  exec_permutationA0001.
+ ######        :rtype: cp.core.core.ndarray
    
   
-  
+#####  exec_migrationA0001.
+ ######        :rtype: None
+        
+ ##### exec_sortA0001.
+  ######       :rtype: None
+        
+ #####  exec_fitnessA0001.
+  ######       :rtype: None
+        
+#####   get_plan.
+ ######        :param row:
+  ######       :type row: int
+ ######        :param fact_conv:
+######         :type fact_conv: int
+######         :param start_time:
+######         :type start_time: int
+######         :rtype: dict
  
  
         

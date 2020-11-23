@@ -256,6 +256,8 @@ fig.show()
 
 ![gantt](https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png)
 
+The following code presents a possible strategy to avoid premature convergence, giving the opportunity to enter new chromosomes through migration every certain epoch and with a high probability allowing them to remain active for some time even though they are not initially competitive. this makes the algorithm optimize slower, but makes it more stable and less prone to getting stuck.
+
 ```
 import time 
 from IPython.display import clear_output
@@ -284,49 +286,35 @@ p = Job_Shop(n_samples=1000000,
              machine_sequence=M_,
              due_date=d_,
              weights=w_,
-             percent_cross=0.5,
-             percent_mutation=0.5,
+             percent_cross=0.9,
+             percent_mutation=0.01,
              percent_intra_mutation=0.1,
-             percent_migration=0.5,
-             percent_selection=0.5,
-             fitness_type="max_C")
-
-
-p_aux = Job_Shop(n_samples=100000,
-             n_jobs=10,
-             n_operations=10,
-             n_machines=10,
-             processing_time=T_,
-             machine_sequence=M_,
-             due_date=d_,
-             weights=w_,
-             percent_cross=0.5,
-             percent_mutation=0.5,
-             percent_intra_mutation=0.1,
-             percent_migration=0.5,
-             percent_selection=0.5,
+             percent_migration=0.01,
+             percent_selection=0.1,
              fitness_type="max_C")
 
 
 
 fitness = []
-fitness2 = []
 
 start_time = time.time()
 
-for i in range(100):
+for i in range(1,100,1):
+
     if i%10 == 0:
-        p_aux.set_population(p.get_population()[900000:1000000])
-        for j in range(10):
-            p_aux.exec_crossA0001()
-            p_aux.exec_fitnessA0001()
-            p_aux.exec_sortA0001()
-            fitness2.append(p_aux.get_fitness()[0])
-            clear_output(wait=True)
-            print("población auxiliar",j,p_aux.get_fitness()[0])
-        p.get_population()[900000:1000000] = p_aux.get_population()
-        p.exec_fitnessA0001()
-        p.exec_sortA0001()
+          p.set_percents_c_m_m_s(
+          percent_cross=0.9,
+          percent_mutation=0.01,
+          percent_migration=0.5,
+          percent_selection=0.1)
+          p.exec_migrationA0001()
+          p.exec_fitnessA0001()
+          p.exec_sortA0001()
+          p.set_percents_c_m_m_s(
+          percent_cross=0.9,
+          percent_mutation=0.01,
+          percent_migration=0.01,
+          percent_selection=0.1)       
 
     p.exec_crossA0001()
     p.exec_fitnessA0001()
@@ -338,11 +326,15 @@ for i in range(100):
     p.exec_fitnessA0001()
     p.exec_sortA0001()
     fitness.append(p.get_fitness()[0])
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
     clear_output(wait=True)
-    print("población principal",i,p.get_fitness()[0])
+    print(i,p.get_fitness()[0])
 print('the elapsed time:%s'% (time.time() - start_time))
 
 ```
+Example using two populations that are mutually supportive, in this case a main population evolves with 1 million individuals, then a second population consisting of 500,000 individuals acts as a seedbed allowing the laggards already seen before in the first implementation proposal to Job Shop develop and be competitive with the already more developed ones, thus contributing more to diversity and avoiding an elitist degeneration that leads the algorithm to get stuck in a local minimum.
+ 
 
 ```
 import time 

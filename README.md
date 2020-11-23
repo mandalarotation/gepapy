@@ -256,6 +256,181 @@ fig.show()
 
 ![gantt](https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png)
 
+```
+import time 
+from IPython.display import clear_output
+from gepapy.job_shop import Job_Shop
+import cupy as cp
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+
+T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+d_ = cp.zeros(10,dtype=cp.float32)
+w_ = cp.zeros(10,dtype=cp.float32)
+M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+
+
+
+
+p = Job_Shop(n_samples=1000000,
+             n_jobs=10,
+             n_operations=10,
+             n_machines=10,
+             processing_time=T_,
+             machine_sequence=M_,
+             due_date=d_,
+             weights=w_,
+             percent_cross=0.5,
+             percent_mutation=0.5,
+             percent_intra_mutation=0.1,
+             percent_migration=0.5,
+             percent_selection=0.5,
+             fitness_type="max_C")
+
+
+p_aux = Job_Shop(n_samples=100000,
+             n_jobs=10,
+             n_operations=10,
+             n_machines=10,
+             processing_time=T_,
+             machine_sequence=M_,
+             due_date=d_,
+             weights=w_,
+             percent_cross=0.5,
+             percent_mutation=0.5,
+             percent_intra_mutation=0.1,
+             percent_migration=0.5,
+             percent_selection=0.5,
+             fitness_type="max_C")
+
+
+
+fitness = []
+fitness2 = []
+
+start_time = time.time()
+
+for i in range(100):
+    if i%10 == 0:
+        p_aux.set_population(p.get_population()[900000:1000000])
+        for j in range(10):
+            p_aux.exec_crossA0001()
+            p_aux.exec_fitnessA0001()
+            p_aux.exec_sortA0001()
+            fitness2.append(p_aux.get_fitness()[0])
+            clear_output(wait=True)
+            print("población auxiliar",j,p_aux.get_fitness()[0])
+        p.get_population()[900000:1000000] = p_aux.get_population()
+        p.exec_fitnessA0001()
+        p.exec_sortA0001()
+
+    p.exec_crossA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    p.exec_mutationA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    p.exec_migrationA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    fitness.append(p.get_fitness()[0])
+    clear_output(wait=True)
+    print("población principal",i,p.get_fitness()[0])
+print('the elapsed time:%s'% (time.time() - start_time))
+
+```
+
+```
+import time 
+from IPython.display import clear_output
+from gepapy.job_shop import Job_Shop
+import cupy as cp
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+
+T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+d_ = cp.zeros(10,dtype=cp.float32)
+w_ = cp.zeros(10,dtype=cp.float32)
+M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+
+
+
+
+p = Job_Shop(n_samples=1000000,
+             n_jobs=10,
+             n_operations=10,
+             n_machines=10,
+             processing_time=T_,
+             machine_sequence=M_,
+             due_date=d_,
+             weights=w_,
+             percent_cross=0.5,
+             percent_mutation=0.5,
+             percent_intra_mutation=0.1,
+             percent_migration=0.5,
+             percent_selection=0.5,
+             fitness_type="max_C")
+
+
+p_aux = Job_Shop(n_samples=100000,
+             n_jobs=10,
+             n_operations=10,
+             n_machines=10,
+             processing_time=T_,
+             machine_sequence=M_,
+             due_date=d_,
+             weights=w_,
+             percent_cross=0.5,
+             percent_mutation=0.5,
+             percent_intra_mutation=0.1,
+             percent_migration=0.5,
+             percent_selection=0.5,
+             fitness_type="max_C")
+
+
+
+fitness = []
+fitness2 = []
+
+start_time = time.time()
+
+for i in range(100):
+    if i%10 == 0:
+        p_aux.set_population(p.get_population()[900000:1000000])
+        for j in range(10):
+            p_aux.exec_crossA0001()
+            p_aux.exec_fitnessA0001()
+            p_aux.exec_sortA0001()
+            fitness2.append(p_aux.get_fitness()[0])
+            clear_output(wait=True)
+            print("población auxiliar",j,p_aux.get_fitness()[0])
+        p.get_population()[900000:1000000] = p_aux.get_population()
+        p.exec_fitnessA0001()
+        p.exec_sortA0001()
+
+    p.exec_crossA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    p.exec_mutationA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    p.exec_migrationA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    fitness.append(p.get_fitness()[0])
+    clear_output(wait=True)
+    print("población principal",i,p.get_fitness()[0])
+print('the elapsed time:%s'% (time.time() - start_time))
+
+```
 
 
 

@@ -3,7 +3,7 @@ gepapy
 
 The objective of this project is to develop a library that allows to solve various production planning problems in a flexible and fast way by means of modules that the user can configure and join to create their own implementations; Each module is implemented in cuda and runs directly on the GPU with the help of the numba and cupy libraries, which guarantees a parallel execution and much shorter waiting times than if the execution were done on the CPU.
 
-.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png
+.. image:: https://raw.githubusercontent.com/mandalarotation/gepapy/master/assets/shchema.png
 
 Installation
 ------------------------
@@ -86,7 +86,7 @@ Finally we import the matplotlib library to be able to make graphs and visualize
   d_ = cp.array([50,38,49,12,20,105,73,45,6,64,15,6,92,43,78,21,15,50,150,99],dtype=cp.float32)
   w_ = cp.array([10,5,1,5,10,1,5,10,5,1,5,10,10,5,1,10,5,5,1,5],dtype=cp.float32)
 
-For this specific ** Single Machine ** problem, the following data must be defined to solve the problem; T_, d_, w_. Each position in the vector represents an operation, so T_ [0] -> 10 says that the zero operation time is 10, then d_ [0] -> 50, says that the expected delivery time for the zero operation is 50 and W_ [0] -> 10, says that the delivery priority for the zero operation is 1/10, so then the problem conditions are defined.
+For this specific  Single Machine  problem, the following data must be defined to solve the problem; T, d, w. Each position in the vector represents an operation, so T [0] -> 10 says that the zero operation time is 10, then d [0] -> 50, says that the expected delivery time for the zero operation is 50 and W [0] -> 10, says that the delivery priority for the zero operation is 1/10, so then the problem conditions are defined.
 
 
 ** SingleMachine class object instantiation. **
@@ -141,7 +141,7 @@ This loop can be built according to the wishes of the user and the order that he
 
   plt.plot(fitness)
   
-.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/smp_fitness.png
+.. image:: https://raw.githubusercontent.com/mandalarotation/gepapy/master/assets/smp_fitness.png
 
 
 Job Shop Problem
@@ -234,14 +234,14 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
 
   plt.plot(fitness)
 
-.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png
+.. image:: https://raw.githubusercontent.com/mandalarotation/gepapy/master/assets/jsp_fitness_.png
 
 
 .. code:: python
   
   plt.plot(cp.asnumpy(p.get_fitness()))
 
-.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png
+.. image:: https://raw.githubusercontent.com/mandalarotation/gepapy/master/assets/jsp_all_fitness.png 
 
 .. code:: python
 
@@ -253,7 +253,7 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
   fig = ff.create_gantt(plan, show_colorbar=True, group_tasks=True, showgrid_x=True, title='Job shop Schedule')
   fig.show()
   
-.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png
+.. image:: https://raw.githubusercontent.com/mandalarotation/gepapy/master/assets/gantt%20jsp.png
   
 The following code presents a possible strategy to avoid premature convergence, giving the opportunity to enter new chromosomes through migration every certain epoch and with a high probability allowing them to remain active for some time even though they are not initially competitive. this makes the algorithm optimize slower, but makes it more stable and less prone to getting stuck.
 

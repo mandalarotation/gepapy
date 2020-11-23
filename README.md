@@ -2,6 +2,8 @@
 
 The objective of this project is to develop a library that allows to solve various production planning problems in a flexible and fast way by means of modules that the user can configure and join to create their own implementations; Each module is implemented in cuda and runs directly on the GPU with the help of the numba and cupy libraries, which guarantees a parallel execution and much shorter waiting times than if the execution were done on the CPU.
 
+![schema](https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png)
+
 # Installation
 
 ## Requirements
@@ -256,7 +258,7 @@ fig.show()
 
 
 
-![schema](https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png)
+
 
 # developers
 

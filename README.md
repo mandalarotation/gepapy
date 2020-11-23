@@ -60,6 +60,47 @@ The objective of this project is to develop a library that allows to solve vario
  ######       :**param fitness_type**:
  ######       :type fitness_type: str
  ######       :description fitness_type: Fitness function type
+ 
+ ###### setters methods
+ 
+ ###### set_n_samples.
+ ######       :param n_samples:
+ ######       :type n_samples: int
+ ######       :rtype: int
+        
+  ###### set_percent_intra_cross.
+  ######       :param percent_intra_cros:
+  ######      :type percent_intra_cros: float
+  ######     :rtype: float
+   
+  ###### set_percent_intra_mutation.
+  ######     :param percent_intra_mutation:
+  ######    :type percent_intra_mutation: float
+  ######      :rtype: float
+        
+  ###### set_population.
+  ######      :param population:
+  ######      :type population: Optional[Union[cp.core.core.ndarray, None]]
+        
+  ###### set_percents_c_m_m_s.
+  ######      :param percent_cross:
+  ######      :type percent_cross: float
+  ######      :param percent_mutation:
+  ######      :type percent_mutation: float
+  ######       :param percent_migration:
+  ######      :type percent_migration: float
+  ######      :param percent_selection:
+  ######      :type percent_selection: float
+  ######      :rtype: None
+  ######      :constraint: percent_cross and percent_mutation and percent_migration <=  1 - percent_selection
+        
+      
+        
+   
+  
+  
+ 
+ 
         
 Single_Machine and Flow_Shop are specific cases of Job_Shop
 

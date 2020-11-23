@@ -3,6 +3,8 @@ gepapy
 
 The objective of this project is to develop a library that allows to solve various production planning problems in a flexible and fast way by means of modules that the user can configure and join to create their own implementations; Each module is implemented in cuda and runs directly on the GPU with the help of the numba and cupy libraries, which guarantees a parallel execution and much shorter waiting times than if the execution were done on the CPU.
 
+![schema](https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png)
+
 Installation
 ------------------------
 
@@ -241,4 +243,229 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
 
 ![jsp_all_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png)
   
-  
+ 
+ The following code presents a possible strategy to avoid premature convergence, giving the opportunity to enter new chromosomes through migration every certain epoch and with a high probability allowing them to remain active for some time even though they are not initially competitive. this makes the algorithm optimize slower, but makes it more stable and less prone to getting stuck.
+
+.. code:: python
+
+  import time 
+  from IPython.display import clear_output
+  from gepapy.job_shop import Job_Shop
+  import cupy as cp
+  import pandas as pd
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+
+  pt_tmp =[[29, 78,  9, 36, 49, 11, 62, 56, 44, 21],
+         [43, 90, 75, 11, 69, 28, 46, 46, 72, 30],
+         [91, 85, 39, 74, 90, 10, 12, 89, 45, 33],
+         [81, 95, 71, 99,  9, 52, 85, 98, 22, 43],
+         [14,  6, 22, 61, 26, 69, 21, 49, 72, 53],
+         [84,  2, 52, 95, 48, 72, 47, 65,  6, 25],
+         [46, 37, 61, 13, 32, 21, 32, 89, 30, 55],
+         [31, 86, 46, 74, 32, 88, 19, 48, 36, 79],
+         [76, 69, 76, 51, 85, 11, 40, 89, 26, 74],
+         [85, 13, 61,  7, 64, 76, 47, 52, 90, 45]]
+
+  ms_tmp = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+         [0, 2, 4, 9, 3, 1, 6, 5, 7, 8],
+         [1, 0, 3, 2, 8, 5, 7, 6, 9, 4],
+         [1, 2, 0, 4, 6, 8, 7, 3, 9, 5],
+         [2, 0, 1, 5, 3, 4, 8, 7, 9, 6],
+         [2, 1, 5, 3, 8, 9, 0, 6, 4, 7],
+         [1, 0, 3, 2, 6, 5, 9, 8, 7, 4],
+         [2, 0, 1, 5, 4, 6, 8, 9, 7, 3],
+         [0, 1, 3, 5, 2, 9, 6, 7, 4, 8],
+         [1, 0, 2, 6, 8, 9, 5, 3, 4, 7]]
+
+
+
+  T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+  d_ = cp.zeros(10,dtype=cp.float32)
+  w_ = cp.zeros(10,dtype=cp.float32)
+  M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+
+
+
+
+  p = Job_Shop(n_samples=1000000,
+               n_jobs=10,
+               n_operations=10,
+               n_machines=10,
+               processing_time=T_,
+               machine_sequence=M_,
+               due_date=d_,
+               weights=w_,
+               percent_cross=0.9,
+               percent_mutation=0.01,
+               percent_intra_mutation=0.1,
+               percent_migration=0.01,
+               percent_selection=0.1,
+               fitness_type="max_C")
+
+
+
+  fitness = []
+
+  start_time = time.time()
+
+  for i in range(1,100,1):
+
+      if i%10 == 0:
+            p.set_percents_c_m_m_s(
+            percent_cross=0.9,
+            percent_mutation=0.01,
+            percent_migration=0.5,
+            percent_selection=0.1)
+            p.exec_migrationA0001()
+            p.exec_fitnessA0001()
+            p.exec_sortA0001()
+            p.set_percents_c_m_m_s(
+            percent_cross=0.9,
+            percent_mutation=0.01,
+            percent_migration=0.01,
+            percent_selection=0.1)       
+
+      p.exec_crossA0001()
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      p.exec_mutationA0001()
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      p.exec_migrationA0001()
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      fitness.append(p.get_fitness()[0])
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      clear_output(wait=True)
+      print(i,p.get_fitness()[0])
+  print('the elapsed time:%s'% (time.time() - start_time))
+
+Example using two populations that are mutually supportive, in this case a main population evolves with 1 million individuals, then a second population consisting of 500,000 individuals acts as a seedbed allowing the laggards already seen before in the first implementation proposal to Job Shop develop and be competitive with the already more developed ones, thus contributing more to diversity and avoiding an elitist degeneration that leads the algorithm to get stuck in a local minimum.
+ 
+
+.. code:: python
+
+  import time 
+  from IPython.display import clear_output
+  from gepapy.job_shop import Job_Shop
+  import cupy as cp
+  import pandas as pd
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+
+  pt_tmp =[[29, 78,  9, 36, 49, 11, 62, 56, 44, 21],
+         [43, 90, 75, 11, 69, 28, 46, 46, 72, 30],
+         [91, 85, 39, 74, 90, 10, 12, 89, 45, 33],
+         [81, 95, 71, 99,  9, 52, 85, 98, 22, 43],
+         [14,  6, 22, 61, 26, 69, 21, 49, 72, 53],
+         [84,  2, 52, 95, 48, 72, 47, 65,  6, 25],
+         [46, 37, 61, 13, 32, 21, 32, 89, 30, 55],
+         [31, 86, 46, 74, 32, 88, 19, 48, 36, 79],
+         [76, 69, 76, 51, 85, 11, 40, 89, 26, 74],
+         [85, 13, 61,  7, 64, 76, 47, 52, 90, 45]]
+
+  ms_tmp = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+         [0, 2, 4, 9, 3, 1, 6, 5, 7, 8],
+         [1, 0, 3, 2, 8, 5, 7, 6, 9, 4],
+         [1, 2, 0, 4, 6, 8, 7, 3, 9, 5],
+         [2, 0, 1, 5, 3, 4, 8, 7, 9, 6],
+         [2, 1, 5, 3, 8, 9, 0, 6, 4, 7],
+         [1, 0, 3, 2, 6, 5, 9, 8, 7, 4],
+         [2, 0, 1, 5, 4, 6, 8, 9, 7, 3],
+         [0, 1, 3, 5, 2, 9, 6, 7, 4, 8],
+         [1, 0, 2, 6, 8, 9, 5, 3, 4, 7]]
+
+
+  T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+  d_ = cp.zeros(10,dtype=cp.float32)
+  w_ = cp.zeros(10,dtype=cp.float32)
+  M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+
+
+
+
+  p = Job_Shop(n_samples=1000000,
+               n_jobs=10,
+               n_operations=10,
+               n_machines=10,
+               processing_time=T_,
+               machine_sequence=M_,
+               due_date=d_,
+               weights=w_,
+               percent_cross=0.5,
+               percent_mutation=0.5,
+               percent_intra_mutation=0.1,
+               percent_migration=0.5,
+               percent_selection=0.5,
+               fitness_type="max_C")
+
+
+  p_aux = Job_Shop(n_samples=100000,
+               n_jobs=10,
+               n_operations=10,
+               n_machines=10,
+               processing_time=T_,
+               machine_sequence=M_,
+               due_date=d_,
+               weights=w_,
+               percent_cross=0.5,
+               percent_mutation=0.5,
+               percent_intra_mutation=0.1,
+               percent_migration=0.5,
+               percent_selection=0.5,
+               fitness_type="max_C")
+
+
+
+  fitness = []
+  fitness2 = []
+
+  start_time = time.time()
+
+  for i in range(100):
+      if i%10 == 0:
+          p_aux.set_population(p.get_population()[900000:1000000])
+          for j in range(10):
+              p_aux.exec_crossA0001()
+              p_aux.exec_fitnessA0001()
+              p_aux.exec_sortA0001()
+              fitness2.append(p_aux.get_fitness()[0])
+              clear_output(wait=True)
+              print("población auxiliar",j,p_aux.get_fitness()[0])
+          p.get_population()[900000:1000000] = p_aux.get_population()
+          p.exec_fitnessA0001()
+          p.exec_sortA0001()
+
+      p.exec_crossA0001()
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      p.exec_mutationA0001()
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      p.exec_migrationA0001()
+      p.exec_fitnessA0001()
+      p.exec_sortA0001()
+      fitness.append(p.get_fitness()[0])
+      clear_output(wait=True)
+      print("población principal",i,p.get_fitness()[0])
+  print('the elapsed time:%s'% (time.time() - start_time))
+
+
+
+
+
+# developers
+
+Jean Carlo Jimenez Giraldo 
+Student of industrial engineering from the National University of Colombia Medellin headquarters
+
+Elkin Rodriguez Velasquez 
+Profesor Professor of industrial engineering from the National University of Colombia Medellin headquarters
+
+Yubar Daniel Marin Benjumea 
+Student of statistics from the National University of Colombia Medellin headquarters
+

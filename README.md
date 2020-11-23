@@ -180,7 +180,7 @@ The objective of this project is to develop a library that allows to solve vario
  
  
         
-Single_Machine and Flow_Shop are specific cases of Job_Shop
+#### Single_Machine and Flow_Shop are specific cases of Job_Shop
 
 # Installation
 

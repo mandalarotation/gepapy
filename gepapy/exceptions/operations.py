@@ -227,7 +227,7 @@ class Check:
             """
             if percent_cross <= 0 or percent_cross >= 1:
                 raise SetException(
-                    "type(percent_cross) -> {} ; expected -> Interval[(0,1)]".format(
+                    "percent_cross -> {} ; expected -> Interval[(0,1)]".format(
                         type(percent_cross)
                     )
                 )
@@ -261,7 +261,7 @@ class Check:
             """
             if percent_intra_cross <= 0 or percent_intra_cross >= 1:
                 raise SetException(
-                    "type(percent_intra_cross) -> {} ; expected -> Interval[(0,1)]".format(
+                    "percent_intra_cross -> {} ; expected -> Interval[(0,1)]".format(
                         type(percent_intra_cross)
                     )
                 )
@@ -295,7 +295,7 @@ class Check:
             """
             if percent_mutation <= 0 or percent_mutation >= 1:
                 raise SetException(
-                    "type(percent_mutation) -> {} ; expected -> Interval[(0,1)]".format(
+                    "percent_mutation -> {} ; expected -> Interval[(0,1)]".format(
                         type(percent_mutation)
                     )
                 )
@@ -330,7 +330,7 @@ class Check:
             """
             if percent_intra_mutation <= 0 or percent_intra_mutation >= 1:
                 raise SetException(
-                    "type(percent_intra_mutation) -> {} ; expected -> Interval[(0,1)]".format(
+                    "percent_intra_mutation -> {} ; expected -> Interval[(0,1)]".format(
                         type(percent_intra_mutation)
                     )
                 )
@@ -363,7 +363,7 @@ class Check:
             """
             if percent_migration <= 0 or percent_migration >= 1:
                 raise SetException(
-                    "type(percent_migration) -> {} ; expected -> Interval[(0,1)]".format(
+                    "percent_migration -> {} ; expected -> Interval[(0,1)]".format(
                         type(percent_migration)
                     )
                 )
@@ -396,7 +396,7 @@ class Check:
             """
             if percent_selection <= 0 or percent_selection >= 1:
                 raise SetException(
-                    "type(percent_selection) -> {} ; expected -> Interval[(0,1)]".format(
+                    "percent_selection -> {} ; expected -> Interval[(0,1)]".format(
                         type(percent_selection)
                     )
                 )

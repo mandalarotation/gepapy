@@ -12,7 +12,7 @@ The objective of this project is to develop a library that allows to solve vario
 
 ######  Create an object by initializing a population with methods to perform genetic operations on it.
   
- ######**__init__**
+ ###### **__init__**
  ###### **Parameters**:
  ######       :**param processing_time**: 
  ######       :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]

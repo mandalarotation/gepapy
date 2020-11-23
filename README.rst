@@ -15,86 +15,87 @@ Job_Shop object
 
  Create an object by initializing a population with methods to perform genetic operations on it.
   
- **__init__()**
- **Parameters**:
-        :**param processing_time**: 
-        :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
-        :description processing_time: A matrix with the time of each operation
-        :**param machine_sequence**:
-        :type machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
-        :description machine_sequence: A matrix with the machine sequence for each job
-        :**param due_date**:
-        :type due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
-        :description due_date:
-        :**param weights**: A vector with expected delivery date for each job.
-        :type weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
-        :description weights: A vector with the privilege for each job.
-        :**param n_samples**:
-        :type n_samples: int
-        :description n_samples: The size population
-        :**param n_jobs**:
-        :type n_jobs: int
-        :description njobs: The number of jobs
-        :**param n_operations**:
-        :type n_operations: int
-        :description n_operations: The number of operations
-        :**param n_machines**:
-        :type n_machines: int
-        :description n_machines: The number of machines
-        :**param percent_cross**:
-        :type percent_cross: float
-        :description percent_cross:  Percentage of the population for crossing
-        :**param percent_intra_cross**:
-        :type percent_intra_cross: float
-        :description percent_intra_cross: Percentage of the cromosome for crossing
-        :**param percent_mutation**:
-        :type percent_mutation: float
-        :description percent_mutation: Percentage of the population for mutation
-        :**param percent_intra_mutation**:
-        :type percent_intra_mutation: float
-        :description percent_intra_mutation: Percentage of the cromosome for mutation
-        :**param percent_migration**:
-        :type percent_migration: float
-        :description percent_migration: Percentage of the cromosome for migration
-        :**param percent_selection**:
-        :type percent_selection: float
-        :description percent_selection: Percentage of the population for selection
-        :**param fitness_type**:
-        :type fitness_type: str
-        :description fitness_type: Fitness function type
+**__init__()**
+**Parameters**:
+
+    :**param processing_time**: 
+    :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+    :description processing_time: A matrix with the time of each operation
+    :**param machine_sequence**:
+    :type machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+    :description machine_sequence: A matrix with the machine sequence for each job
+    :**param due_date**:
+    :type due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+    :description due_date:
+    :**param weights**: A vector with expected delivery date for each job.
+    :type weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+    :description weights: A vector with the privilege for each job.
+    :**param n_samples**:
+    :type n_samples: int
+    :description n_samples: The size population
+    :**param n_jobs**:
+    :type n_jobs: int
+    :description njobs: The number of jobs
+    :**param n_operations**:
+    :type n_operations: int
+    :description n_operations: The number of operations
+    :**param n_machines**:
+    :type n_machines: int
+    :description n_machines: The number of machines
+    :**param percent_cross**:
+    :type percent_cross: float
+    :description percent_cross:  Percentage of the population for crossing
+    :**param percent_intra_cross**:
+    :type percent_intra_cross: float
+    :description percent_intra_cross: Percentage of the cromosome for crossing
+    :**param percent_mutation**:
+    :type percent_mutation: float
+    :description percent_mutation: Percentage of the population for mutation
+    :**param percent_intra_mutation**:
+    :type percent_intra_mutation: float
+    :description percent_intra_mutation: Percentage of the cromosome for mutation
+    :**param percent_migration**:
+    :type percent_migration: float
+    :description percent_migration: Percentage of the cromosome for migration
+    :**param percent_selection**:
+    :type percent_selection: float
+    :description percent_selection: Percentage of the population for selection
+    :**param fitness_type**:
+    :type fitness_type: str
+    :description fitness_type: Fitness function type
  
- setters methods
+setters methods
  
 set_n_samples( n_samples: int).
-       :param n_samples:
-       :type n_samples: int
-       :rtype: int
+    :param n_samples:
+    :type n_samples: int
+    :rtype: int
         
 set_percent_intra_cross( percent_intra_cros: float )
-       :param percent_intra_cros:
-       :type percent_intra_cros: float
-       :rtype: float
+    :param percent_intra_cros:
+    :type percent_intra_cros: float
+    :rtype: float
    
 set_percent_intra_mutation( percent_intra_mutation: float )
-       :param percent_intra_mutation:
-       :type percent_intra_mutation: float
-       :rtype: float
+    :param percent_intra_mutation:
+    :type percent_intra_mutation: float
+    :rtype: float
         
 set_population( population: Optional[Union[cp.core.core.ndarray, None]] )
-       :param population:
-       :type population: Optional[Union[cp.core.core.ndarray, None]]
+    :param population:
+    :type population: Optional[Union[cp.core.core.ndarray, None]]
         
 set_percents_c_m_m_s( percent_cross: float, percent_mutation: float, percent_migration: float, percent_selection: float)
-      :param percent_cross:
-      :type percent_cross: float
-      :param percent_mutation:
-      :type percent_mutation: float
-      :param percent_migration:
-      :type percent_migration: float
-      :param percent_selection:
-      :type percent_selection: float
-      :rtype: None
-      :constraint: percent_cross and percent_mutation and percent_migration <=  1 - percent_selection
+    :param percent_cross:
+    :type percent_cross: float
+    :param percent_mutation:
+    :type percent_mutation: float
+    :param percent_migration:
+    :type percent_migration: float
+    :param percent_selection:
+    :type percent_selection: float
+    :rtype: None
+    :constraint: percent_cross and percent_mutation and percent_migration <=  1 - percent_selection
         
         
 getters methods
@@ -243,7 +244,7 @@ The following code can be divided into 4 parts:
 .. code:: python
 
   import time 
-  from gen_scheduling_cuda.single_machine import Single_Machine
+  from gegapy.single_machine import Single_Machine
   import cupy as cp
   import numpy as np
   import matplotlib.pyplot as plt

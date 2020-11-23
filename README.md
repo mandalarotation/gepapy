@@ -13,7 +13,7 @@ The objective of this project is to develop a library that allows to solve vario
 
 ####  Create an object by initializing a population with methods to perform genetic operations on it.
   
- #### **__init__**
+ #### **__init__()**
  ##### **Parameters**:
  #####       :**param processing_time**: 
  ######       :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
@@ -61,7 +61,7 @@ The objective of this project is to develop a library that allows to solve vario
  ######       :type fitness_type: str
  ######       :description fitness_type: Fitness function type
  
- #### setters methods
+ #### setters methods()
  
  ##### set_n_samples.
  ######       :param n_samples:
@@ -97,56 +97,56 @@ The objective of this project is to develop a library that allows to solve vario
       
   #### getters methods
   
-  get_n_samples.
-        :rtype: int
+  ##### get_n_samples.
+   ######     :rtype: int
         
-  get_n_jobs.
-        :rtype: int
+  ##### get_n_jobs.
+   ######      :rtype: int
         
-  get_n_machines.
-        :rtype: int
+  ##### get_n_machines.
+   ######      :rtype: int
         
-  get_n_operations.
-        :rtype: int
+  ##### get_n_operations.
+  ######       :rtype: int
         
-  get_fitness_type.
+  ##### get_fitness_type.
+   ######      :rtype: cp.core.core.ndarray
+        
+  ##### get_percent_cross.
+   ######      :rtype: float
+        
+ ##### get_percent_intra_cross.
+  ######       :rtype: float
+        
+ ##### get_percent_mutation.
+  ######       :rtype: float
+        
+ ##### get_percent_intra_mutation.
+ ######        :rtype: float
+        
+ ##### get_percent_migration.
+   ######      :rtype: float
+        
+#####  get_percent_selection.
+  ######       :rtype: float
+        
+#####  get_fitness.
         :rtype: cp.core.core.ndarray
         
-  get_percent_cross.
-        :rtype: float
+#####  get_population.
+  ######      :rtype: cp.core.core.ndarray
         
-  get_percent_intra_cross.
-        :rtype: float
-        
-  get_percent_mutation.
-        :rtype: float
-        
-  get_percent_intra_mutation.
-        :rtype: float
-        
-  get_percent_migration.
-        :rtype: float
-        
-  get_percent_selection.
-        :rtype: float
-        
-  get_fitness.
-        :rtype: cp.core.core.ndarray
-        
-  get_population.
-       :rtype: cp.core.core.ndarray
-        
-  get_processing_time.
-       :rtype: cp.core.core.ndarray
+ ##### get_processing_time.
+  ######      :rtype: cp.core.core.ndarray
        
-  get_machine_sequence.
-       :rtype: cp.core.core.ndarray
+#####  get_machine_sequence.
+  ######      :rtype: cp.core.core.ndarray
         
-  get_due_date.
-       :rtype: cp.core.core.ndarray
+ ##### get_due_date.
+   ######     :rtype: cp.core.core.ndarray
        
-  get_weights.
-        :rtype: cp.core.core.ndarray
+#####  get_weights.
+  ######       :rtype: cp.core.core.ndarray
         
    
   

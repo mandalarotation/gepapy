@@ -2,7 +2,7 @@ from setuptools import setup  # type: ignore
 
 setup(
     name="gepapy",
-    version="1.1.2",
+    version="1.1.1",
     description="Developing a library with Cuda and Python for solving scheduling problems on GPU",
     author="Jean Carlo Jimenez Giraldo",
     author_email="mandalarotation@gmail.com",

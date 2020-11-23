@@ -458,7 +458,8 @@ Example using two populations that are mutually supportive, in this case a main 
 
 
 
-# developers
+Developers
+------------------------
 
 Jean Carlo Jimenez Giraldo 
 Student of industrial engineering from the National University of Colombia Medellin headquarters

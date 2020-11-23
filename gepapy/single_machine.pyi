@@ -1,6 +1,6 @@
 import cupy as cp  # type: ignore
 import numpy as np  # type: ignore
-from gen_scheduling_cuda.operations import Operations as Operations
+from gepapy.operations import Operations as Operations
 from typing import Optional, Union
 
 class Single_Machine(Operations):

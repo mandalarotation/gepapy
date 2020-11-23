@@ -3,11 +3,11 @@ from typing import Union, Optional
 import numpy as np  # type: ignore
 import cupy as cp  # type: ignore
 
-from gen_scheduling_cuda.operations import Operations
+from gepapy.operations import Operations
 
 
-class Flow_Shop(Operations):
-    """Flow_Shop."""
+class Job_Shop(Operations):
+    """Job_Shop."""
 
     def __init__(
         self,

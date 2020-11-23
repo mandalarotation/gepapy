@@ -62,7 +62,7 @@ The objective of this project is to develop a library that allows to solve vario
  ######       :description fitness_type: Fitness function type
  
  #### setters methods
-
+ 
  ##### set_n_samples.
  ######       :param n_samples:
  ######       :type n_samples: int
@@ -95,7 +95,62 @@ The objective of this project is to develop a library that allows to solve vario
   ######      :constraint: percent_cross and percent_mutation and percent_migration <=  1 - percent_selection
         
       
+  #### getters methods
+  
+  get_n_samples.
+        :rtype: int
         
+  get_n_jobs.
+        :rtype: int
+        
+  get_n_machines.
+        :rtype: int
+        
+  get_n_operations.
+        :rtype: int
+        
+  get_fitness_type.
+        :rtype: cp.core.core.ndarray
+        
+  get_percent_cross.
+        :rtype: float
+        
+  get_percent_intra_cross.
+        :rtype: float
+        
+  get_percent_mutation.
+        :rtype: float
+        
+  get_percent_intra_mutation.
+        :rtype: float
+        
+  get_percent_migration.
+        :rtype: float
+        
+  get_percent_selection.
+        :rtype: float
+        
+  get_fitness.
+        :rtype: cp.core.core.ndarray
+        
+  get_population.
+       :rtype: cp.core.core.ndarray
+        
+  get_processing_time.
+       :rtype: cp.core.core.ndarray
+       
+  get_machine_sequence.
+       :rtype: cp.core.core.ndarray
+        
+  get_due_date.
+       :rtype: cp.core.core.ndarray
+       
+  get_weights.
+        :rtype: cp.core.core.ndarray
+        
+   
+  
+  #### operation methods
    
   
   

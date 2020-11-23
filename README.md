@@ -9,11 +9,11 @@ The objective of this project is to develop a library that allows to solve vario
 
 ## Job_Shop object
 
-##### **gepapy.Job_Shop**(**processing_time**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **machine_sequence**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **due_date**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **weights**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **n_samples**: int, **n_jobs**: int, **n_operations**: int, **n_machines**: int, **percent_cross**: float=0.2, **percent_intra_cross**: float=0.5, **percent_mutation**: float=0.2, **percent_intra_mutation**: float=0.5, **percent_migration**: float=0.1, **percent_selection**: float=0.1, **fitness_type**: str='max_C')
+#### **gepapy.Job_Shop**(**processing_time**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **machine_sequence**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **due_date**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **weights**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **n_samples**: int, **n_jobs**: int, **n_operations**: int, **n_machines**: int, **percent_cross**: float=0.2, **percent_intra_cross**: float=0.5, **percent_mutation**: float=0.2, **percent_intra_mutation**: float=0.5, **percent_migration**: float=0.1, **percent_selection**: float=0.1, **fitness_type**: str='max_C')
 
-#####  Create an object by initializing a population with methods to perform genetic operations on it.
+####  Create an object by initializing a population with methods to perform genetic operations on it.
   
- ##### **__init__**
+ #### **__init__**
  ##### **Parameters**:
  #####       :**param processing_time**: 
  ######       :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
@@ -61,7 +61,7 @@ The objective of this project is to develop a library that allows to solve vario
  ######       :type fitness_type: str
  ######       :description fitness_type: Fitness function type
  
- ##### setters methods
+ #### setters methods
 
  ##### set_n_samples.
  ######       :param n_samples:

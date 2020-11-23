@@ -65,7 +65,7 @@ The following code can be divided into 4 parts:
 
 ** Import of libraries. **
 
-``` { .py }
+```
 import time 
 from gen_scheduling_cuda.single_machine import Single_Machine
 import cupy as cp

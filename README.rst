@@ -141,7 +141,7 @@ This loop can be built according to the wishes of the user and the order that he
 
   plt.plot(fitness)
   
- .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/smp_fitness.png
+.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/smp_fitness.png
 
 
 Job Shop Problem
@@ -236,13 +236,23 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
 
 .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png
 
-![jsp_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png)
 
 .. code:: python
   
   plt.plot(cp.asnumpy(p.get_fitness()))
 
 .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png
+
+.. code:: python
+  import chart_studio.plotly as py
+  import plotly.figure_factory as ff
+
+  plan = p.get_plan(0,60,1604868407175) # (#number sequence,conversion factor to seconds, timestap)
+
+  fig = ff.create_gantt(plan, show_colorbar=True, group_tasks=True, showgrid_x=True, title='Job shop Schedule')
+  fig.show()
+  
+.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png
   
  
  The following code presents a possible strategy to avoid premature convergence, giving the opportunity to enter new chromosomes through migration every certain epoch and with a high probability allowing them to remain active for some time even though they are not initially competitive. this makes the algorithm optimize slower, but makes it more stable and less prone to getting stuck.

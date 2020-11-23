@@ -8,16 +8,16 @@ The objective of this project is to develop a library that allows to solve vario
 # Instructions
 
 
-gepapy.Job_Shop(processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], n_samples: int, n_jobs: int, n_operations: int, n_machines: int, percent_cross: float=0.2, percent_intra_cross: float=0.5, percent_mutation: float=0.2, percent_intra_mutation: float=0.5, percent_migration: float=0.1, percent_selection: float=0.1, fitness_type: str='max_C')
+###### gepapy.Job_Shop(processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], n_samples: int, n_jobs: int, n_operations: int, n_machines: int, percent_cross: float=0.2, percent_intra_cross: float=0.5, percent_mutation: float=0.2, percent_intra_mutation: float=0.5, percent_migration: float=0.1, percent_selection: float=0.1, fitness_type: str='max_C')
 
   Create an object by initializing a population with methods to perform genetic operations on it.
   
-  __init__
-  Parameters:
-        :param processing_time: 
-        :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
-        :description processing_time: A matrix with the time of each operation
-        :param machine_sequence:
+ ###### __init__
+ ###### Parameters:
+ ######       :param processing_time: 
+ ######       :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
+ ######       :description processing_time: A matrix with the time of each operation
+ ######       :param machine_sequence:
         :type machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
         :description machine_sequence: A matrix with the machine sequence for each job
         :param due_date:

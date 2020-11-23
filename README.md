@@ -63,26 +63,26 @@ The objective of this project is to develop a library that allows to solve vario
  
  #### setters methods
  
- ##### set_n_samples().
+ ##### set_n_samples( n_samples: int).
  ######       :param n_samples:
  ######       :type n_samples: int
  ######       :rtype: int
         
-  ##### set_percent_intra_cross().
+  ##### set_percent_intra_cross( percent_intra_cros: float )
   ######       :param percent_intra_cros:
   ######      :type percent_intra_cros: float
   ######     :rtype: float
    
-  ##### set_percent_intra_mutation.
+  ##### set_percent_intra_mutation( percent_intra_mutation: float )
   ######     :param percent_intra_mutation:
   ######    :type percent_intra_mutation: float
   ######      :rtype: float
         
-  ##### set_population().
+  ##### set_population( population: Optional[Union[cp.core.core.ndarray, None]] )
   ######      :param population:
   ######      :type population: Optional[Union[cp.core.core.ndarray, None]]
         
-  ##### set_percents_c_m_m_s().
+  ##### set_percents_c_m_m_s( percent_cross: float, percent_mutation: float, percent_migration: float, percent_selection: float)
   ######      :param percent_cross:
   ######      :type percent_cross: float
   ######      :param percent_mutation:

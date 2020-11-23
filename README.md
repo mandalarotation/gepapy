@@ -137,6 +137,11 @@ for i in range(100):
 
 This loop can be built according to the wishes of the user and the order that he considers pertinent, within the loop at any time he can decide to change any of the object's parameters or even if he has sufficient expertise to modify the population at some point with another code tool or library, tie everything and then continue with the training. For the specific example, a crossing was defined to be made in each epoch, then the fitness is calculated, then the population is rearranged according to the fitness, then a mutation, then again the fitness and the rearrangement and finally a migration and a redenomination and so on. 100 generations or epochs.
 
+```
+plt.plot(fitness)
+```
+
+
 ![sm_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/smp_fitness.png)
 
 
@@ -224,9 +229,28 @@ for i in range(200):
 print('the elapsed time:%s'% (time.time() - start_time))
 ```
 
+```
+plt.plot(fitness)
+```
+
 ![jsp_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png)
 
+```
+plt.plot(cp.asnumpy(p.get_fitness()))
+```
+
+
 ![jsp_all_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png)
+
+```
+import chart_studio.plotly as py
+import plotly.figure_factory as ff
+
+plan = p.get_plan(0,60,1604868407175) # (#number sequence,conversion factor to seconds, timestap)
+
+fig = ff.create_gantt(plan, show_colorbar=True, group_tasks=True, showgrid_x=True, title='Job shop Schedule')
+fig.show()
+```
 
 ![gantt](https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png)
 

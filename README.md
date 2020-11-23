@@ -8,55 +8,55 @@ The objective of this project is to develop a library that allows to solve vario
 # Instructions
 
 
-###### gepapy.Job_Shop(processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], n_samples: int, n_jobs: int, n_operations: int, n_machines: int, percent_cross: float=0.2, percent_intra_cross: float=0.5, percent_mutation: float=0.2, percent_intra_mutation: float=0.5, percent_migration: float=0.1, percent_selection: float=0.1, fitness_type: str='max_C')
+###### **gepapy.Job_Shop**(**processing_time**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **machine_sequence**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **due_date**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **weights**: Optional[Union[list, np.ndarray, cp.core.core.ndarray]], **n_samples**: int, **n_jobs**: int, **n_operations**: int, **n_machines**: int, **percent_cross**: float=0.2, **percent_intra_cross**: float=0.5, **percent_mutation**: float=0.2, **percent_intra_mutation**: float=0.5, **percent_migration**: float=0.1, **percent_selection**: float=0.1, **fitness_type**: str='max_C')
 
 ######  Create an object by initializing a population with methods to perform genetic operations on it.
   
- ###### __init__
- ###### Parameters:
- ######       :param processing_time: 
+ ######**__init__**
+ ###### **Parameters**:
+ ######       :**param processing_time**: 
  ######       :type processing_time: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
  ######       :description processing_time: A matrix with the time of each operation
- ######       :param machine_sequence:
+ ######       :**param machine_sequence**:
  ######       :type machine_sequence: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
  ######       :description machine_sequence: A matrix with the machine sequence for each job
- ######       :param due_date:
+ ######       :**param due_date**:
  ######       :type due_date: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
  ######       :description due_date:
- ######       :param weights: A vector with expected delivery date for each job.
+ ######       :**param weights**: A vector with expected delivery date for each job.
  ######       :type weights: Optional[Union[list, np.ndarray, cp.core.core.ndarray]]
  ######       :description weights: A vector with the privilege for each job.
- ######       :param n_samples:
+ ######       :**param n_samples**:
  ######       :type n_samples: int
  ######       :description n_samples: The size population
- ######       :param n_jobs:
+ ######       :**param n_jobs**:
  ######       :type n_jobs: int
  ######       :description njobs: The number of jobs
- ######       :param n_operations:
+ ######       :**param n_operations**:
  ######       :type n_operations: int
  ######       :description n_operations: The number of operations
- ######       :param n_machines:
+ ######       :**param n_machines**:
  ######       :type n_machines: int
  ######       :description n_machines: The number of machines
- ######       :param percent_cross:
+ ######       :**param percent_cross**:
  ######       :type percent_cross: float
  ######       :description percent_cross:  Percentage of the population for crossing
- ######       :param percent_intra_cross:
+ ######       :**param percent_intra_cross**:
  ######       :type percent_intra_cross: float
  ######      :description percent_intra_cross: Percentage of the cromosome for crossing
- ######       :param percent_mutation:
+ ######       :**param percent_mutation**:
  ######       :type percent_mutation: float
  ######       :description percent_mutation: Percentage of the population for mutation
- ######       :param percent_intra_mutation:
+ ######       :**param percent_intra_mutation**:
  ######       :type percent_intra_mutation: float
  ######       :description percent_intra_mutation: Percentage of the cromosome for mutation
- ######       :param percent_migration:
+ ######       :**param percent_migration**:
  ######       :type percent_migration: float
  ######       :description percent_migration: Percentage of the cromosome for migration
- ######       :param percent_selection:
+ ######       :**param percent_selection**:
  ######       :type percent_selection: float
  ######       :description percent_selection: Percentage of the population for selection
- ######       :param fitness_type:
+ ######       :**param fitness_type**:
  ######       :type fitness_type: str
  ######       :description fitness_type: Fitness function type
         

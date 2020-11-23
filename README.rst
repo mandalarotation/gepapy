@@ -67,84 +67,84 @@ Job_Shop object
  
 set_n_samples( n_samples: int).
        :param n_samples:
-        :type n_samples: int
+       :type n_samples: int
        :rtype: int
         
-  set_percent_intra_cross( percent_intra_cros: float )
-        :param percent_intra_cros:
-      :type percent_intra_cros: float
+set_percent_intra_cross( percent_intra_cros: float )
+       :param percent_intra_cros:
+       :type percent_intra_cros: float
        :rtype: float
    
-  set_percent_intra_mutation( percent_intra_mutation: float )
+set_percent_intra_mutation( percent_intra_mutation: float )
        :param percent_intra_mutation:
-     :type percent_intra_mutation: float
-      :rtype: float
+       :type percent_intra_mutation: float
+       :rtype: float
         
-   set_population( population: Optional[Union[cp.core.core.ndarray, None]] )
+set_population( population: Optional[Union[cp.core.core.ndarray, None]] )
        :param population:
        :type population: Optional[Union[cp.core.core.ndarray, None]]
         
-   set_percents_c_m_m_s( percent_cross: float, percent_mutation: float, percent_migration: float, percent_selection: float)
-     :param percent_cross:
+set_percents_c_m_m_s( percent_cross: float, percent_mutation: float, percent_migration: float, percent_selection: float)
+      :param percent_cross:
       :type percent_cross: float
       :param percent_mutation:
       :type percent_mutation: float
       :param percent_migration:
-       :type percent_migration: float
-     :param percent_selection:
-     :type percent_selection: float
+      :type percent_migration: float
+      :param percent_selection:
+      :type percent_selection: float
       :rtype: None
       :constraint: percent_cross and percent_mutation and percent_migration <=  1 - percent_selection
         
-      
-  getters methods
+        
+getters methods
   
- get_n_samples()
+get_n_samples()
     :rtype: int
         
-   get_n_jobs().
-      :rtype: int
+get_n_jobs().
+    :rtype: int
         
-  get_n_machines()
-        :rtype: int
- get_n_operations()
-        :rtype: int
+get_n_machines()
+    :rtype: int
+    
+get_n_operations()
+    :rtype: int
         
- get_fitness_type()
-     :rtype: cp.core.core.ndarray
+get_fitness_type()
+    :rtype: cp.core.core.ndarray
         
- get_percent_cross()
-      :rtype: float
+get_percent_cross()
+    :rtype: float
         
 get_percent_intra_cross()
-        :rtype: float
+    :rtype: float
 
 get_percent_mutation()
-       :rtype: float
+    :rtype: float
         
 get_percent_intra_mutation()
- :rtype: float
-        
- get_percent_migration()
-     :rtype: float
+    :rtype: float
+       
+get_percent_migration()
+    :rtype: float
 
 get_percent_selection()
-      :rtype: float
-        
- get_fitness()
+    :rtype: float
     
-   :rtype: cp.core.core.ndarray
+get_fitness()
+    :rtype: cp.core.core.ndarray
         
- get_population()
-       :rtype: cp.core.core.ndarray
+get_population()
+    :rtype: cp.core.core.ndarray
         
 get_processing_time()
-      :rtype: cp.core.core.ndarray
+     :rtype: cp.core.core.ndarray
        
 get_machine_sequence()
     :rtype: cp.core.core.ndarray
         
- get_due_date()
+get_due_date()
     :rtype: cp.core.core.ndarray
        
 get_weights()
@@ -154,30 +154,29 @@ get_weights()
   
 operation methods
   
-  exec_permutationA0001()
-        :rtype: cp.core.core.ndarray
+exec_permutationA0001()
+    :rtype: cp.core.core.ndarray
   
-  exec_permutationA0001()
-        :rtype: cp.core.core.ndarray
+exec_permutationA0001()
+    :rtype: cp.core.core.ndarray
    
-  
-  exec_migrationA0001()
-        :rtype: None
+exec_migrationA0001()
+    :rtype: None
         
- exec_sortA0001()
-      :rtype: None
+exec_sortA0001()
+    :rtype: None
         
- exec_fitnessA0001()
-        :rtype: None
+exec_fitnessA0001()
+    :rtype: None
         
-   get_plan( row: int, fact_conv: int, start_time: int)
-       :param row:
-        :type row: int
-        :param fact_conv:
-        :type fact_conv: int
-         :param start_time:
-         :type start_time: int
-         :rtype: dict
+get_plan( row: int, fact_conv: int, start_time: int)
+    :param row:
+    :type row: int
+    :param fact_conv:
+    :type fact_conv: int
+    :param start_time:
+    :type start_time: int
+    :rtype: dict
  
  
 Single_Machine and Flow_Shop are specific cases of Job_Shop

@@ -243,7 +243,15 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
 
 .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png
 
+.. code:: python
 
+  import chart_studio.plotly as py
+  import plotly.figure_factory as ff
+
+  plan = p.get_plan(0,60,1604868407175) # (#number sequence,conversion factor to seconds, timestap)
+
+  fig = ff.create_gantt(plan, show_colorbar=True, group_tasks=True, showgrid_x=True, title='Job shop Schedule')
+  fig.show()
   
 .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png
   

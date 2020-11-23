@@ -20,8 +20,8 @@ Google Colab
 
 In the case of Google Colab, the cuda environment is already configured, so it is enough to activate a session with gpu support and execute the following commands to install the library and be able to view the gantt charts associated with the results.
 
-.. code:: python
-  !pip install gepapy --no-deps 
-  !pip install chart_studio
+.. code:: bash
+  pip install gepapy --no-deps 
+  pip install chart_studio
 
 

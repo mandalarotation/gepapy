@@ -137,6 +137,9 @@ for i in range(100):
 
 This loop can be built according to the wishes of the user and the order that he considers pertinent, within the loop at any time he can decide to change any of the object's parameters or even if he has sufficient expertise to modify the population at some point with another code tool or library, tie everything and then continue with the training. For the specific example, a crossing was defined to be made in each epoch, then the fitness is calculated, then the population is rearranged according to the fitness, then a mutation, then again the fitness and the rearrangement and finally a migration and a redenomination and so on. 100 generations or epochs.
 
+![sm_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/smp_fitness.png)
+
+
 ### Job Shop Problem
 
 The JobShop problem is somewhat more general and interesting than the SingleMachine case, here it is necessary to optimize the order of execution of several jobs, several operations and several machines, for which we have certain restrictions of presence and concurrence in the execution of certain operations on certain machines, which are represented by a pair of matrices, one that defines the execution times in each machine-job combination and a third that defines the order in which each job must be executed in the different machines for each respective operation. There may be several optimization criteria and the library supports several that will be explained in the complete documentation, however for this example we will use the criterion of minimizing the C_max which would be minimizing the time in which the last required operation is completed.
@@ -221,8 +224,15 @@ for i in range(200):
 print('the elapsed time:%s'% (time.time() - start_time))
 ```
 
+![jsp_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png)
 
-![Estrutura](https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png)
+![jsp_all_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png)
+
+![gantt](https://github.com/mandalarotation/gepapy/blob/master/assets/gantt%20jsp.png)
+
+
+
+![schema](https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png)
 
 # developers
 

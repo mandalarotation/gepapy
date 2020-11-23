@@ -140,6 +140,8 @@ This loop can be built according to the wishes of the user and the order that he
 .. code:: python
 
   plt.plot(fitness)
+  
+ .. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/smp_fitness.png
 
 
 Job Shop Problem
@@ -232,6 +234,7 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
 
   plt.plot(fitness)
 
+.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png
 
 ![jsp_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_fitness_.png)
 
@@ -239,9 +242,7 @@ The JobShop problem is somewhat more general and interesting than the SingleMach
   
   plt.plot(cp.asnumpy(p.get_fitness()))
 
-
-
-![jsp_all_fitness](https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png)
+.. image:: https://github.com/mandalarotation/gepapy/blob/master/assets/jsp_all_fitness.png
   
  
  The following code presents a possible strategy to avoid premature convergence, giving the opportunity to enter new chromosomes through migration every certain epoch and with a high probability allowing them to remain active for some time even though they are not initially competitive. this makes the algorithm optimize slower, but makes it more stable and less prone to getting stuck.

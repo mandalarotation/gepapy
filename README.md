@@ -137,7 +137,89 @@ for i in range(100):
 
 This loop can be built according to the wishes of the user and the order that he considers pertinent, within the loop at any time he can decide to change any of the object's parameters or even if he has sufficient expertise to modify the population at some point with another code tool or library, tie everything and then continue with the training. For the specific example, a crossing was defined to be made in each epoch, then the fitness is calculated, then the population is rearranged according to the fitness, then a mutation, then again the fitness and the rearrangement and finally a migration and a redenomination and so on. 100 generations or epochs.
 
+### Job Shop Problem
 
+The JobShop problem is somewhat more general and interesting than the SingleMachine case, here it is necessary to optimize the order of execution of several jobs, several operations and several machines, for which we have certain restrictions of presence and concurrence in the execution of certain operations on certain machines, which are represented by a pair of matrices, one that defines the execution times in each machine-job combination and a third that defines the order in which each job must be executed in the different machines for each respective operation. There may be several optimization criteria and the library supports several that will be explained in the complete documentation, however for this example we will use the criterion of minimizing the C_max which would be minimizing the time in which the last required operation is completed.
+
+```
+import time 
+from IPython.display import clear_output
+from gepapy.job_shop import Job_Shop
+import cupy as cp
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+pt_tmp =[[29, 78,  9, 36, 49, 11, 62, 56, 44, 21],
+       [43, 90, 75, 11, 69, 28, 46, 46, 72, 30],
+       [91, 85, 39, 74, 90, 10, 12, 89, 45, 33],
+       [81, 95, 71, 99,  9, 52, 85, 98, 22, 43],
+       [14,  6, 22, 61, 26, 69, 21, 49, 72, 53],
+       [84,  2, 52, 95, 48, 72, 47, 65,  6, 25],
+       [46, 37, 61, 13, 32, 21, 32, 89, 30, 55],
+       [31, 86, 46, 74, 32, 88, 19, 48, 36, 79],
+       [76, 69, 76, 51, 85, 11, 40, 89, 26, 74],
+       [85, 13, 61,  7, 64, 76, 47, 52, 90, 45]]
+
+ms_tmp = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+       [0, 2, 4, 9, 3, 1, 6, 5, 7, 8],
+       [1, 0, 3, 2, 8, 5, 7, 6, 9, 4],
+       [1, 2, 0, 4, 6, 8, 7, 3, 9, 5],
+       [2, 0, 1, 5, 3, 4, 8, 7, 9, 6],
+       [2, 1, 5, 3, 8, 9, 0, 6, 4, 7],
+       [1, 0, 3, 2, 6, 5, 9, 8, 7, 4],
+       [2, 0, 1, 5, 4, 6, 8, 9, 7, 3],
+       [0, 1, 3, 5, 2, 9, 6, 7, 4, 8],
+       [1, 0, 2, 6, 8, 9, 5, 3, 4, 7]]
+
+T_ = cp.array(pt_tmp,dtype=cp.float32)
+d_ = cp.zeros(10,dtype=cp.float32)
+w_ = cp.zeros(10,dtype=cp.float32)
+M_ = cp.array(ms_tmp,dtype=cp.float32)
+
+
+
+
+p = Job_Shop(n_samples=1000000,
+             n_jobs=10,
+             n_operations=10,
+             n_machines=10,
+             processing_time=T_,
+             machine_sequence=M_,
+             due_date=d_,
+             weights=w_,
+             percent_cross=0.5,
+             percent_mutation=0.1,
+             percent_intra_mutation=0.5,
+             percent_migration=0.5,
+             percent_selection=0.5,
+             fitness_type="max_C")
+
+
+
+fitness = []
+
+start_time = time.time()
+
+for i in range(200):
+
+    p.exec_crossA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    p.exec_mutationA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    p.exec_migrationA0001()
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    fitness.append(p.get_fitness()[0])
+    p.exec_fitnessA0001()
+    p.exec_sortA0001()
+    clear_output(wait=True)
+    print(i,p.get_fitness()[0])
+print('the elapsed time:%s'% (time.time() - start_time))
+```
 
 
 ![Estrutura](https://github.com/mandalarotation/gepapy/blob/master/assets/shchema.png)

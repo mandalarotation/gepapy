@@ -3,7 +3,7 @@ from typing import Optional, Union
 import numpy as np  # type: ignore
 import cupy as cp  # type: ignore
 
-from gen_scheduling_cuda.operations import Operations
+from gepapy.operations import Operations
 
 
 class Single_Machine(Operations):

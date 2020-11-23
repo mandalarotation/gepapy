@@ -2,13 +2,13 @@ import cupy as cp  # type: ignore
 import numpy as np  # type: ignore
 from typing import Optional as Optional
 from typing import Union as Union
-from gen_scheduling_cuda.kernels.crossA0001 import CrossA0001 as CrossA0001
-from gen_scheduling_cuda.kernels.fitnessA0001 import FitnessA0001 as FitnessA0001
-from gen_scheduling_cuda.kernels.mutationA0001 import MutationA0001 as MutationA0001
-from gen_scheduling_cuda.kernels.permutationA0001 import (
+from gepapy.kernels.crossA0001 import CrossA0001 as CrossA0001
+from gepapy.kernels.fitnessA0001 import FitnessA0001 as FitnessA0001
+from gepapy.kernels.mutationA0001 import MutationA0001 as MutationA0001
+from gepapy.kernels.permutationA0001 import (
     PermutationA0001 as PermutationA0001,
 )
-from gen_scheduling_cuda.kernels.sortA0001 import SortA0001 as SortA0001
+from gepapy.kernels.sortA0001 import SortA0001 as SortA0001
 
 class Operations(PermutationA0001, CrossA0001, MutationA0001, SortA0001, FitnessA0001):
     def __init__(self) -> None: ...

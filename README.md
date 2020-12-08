@@ -390,7 +390,7 @@ fitness = []
 
 start_time = time.time()
 
-for i in range(200):
+for i in range(100):
 
     p.exec_crossA0001()
     p.exec_fitnessA0001()

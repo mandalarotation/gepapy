@@ -470,10 +470,10 @@ ms_tmp = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 
 
 
-T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+T_ = cp.array(pt_tmp,dtype=cp.float32)
 d_ = cp.zeros(10,dtype=cp.float32)
 w_ = cp.zeros(10,dtype=cp.float32)
-M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+M_ = cp.array(ms_tmp,dtype=cp.float32)
 
 
 
@@ -569,10 +569,10 @@ ms_tmp = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
        [1, 0, 2, 6, 8, 9, 5, 3, 4, 7]]
 
 
-T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+T_ = cp.array(pt_tmp,dtype=cp.float32)
 d_ = cp.zeros(10,dtype=cp.float32)
 w_ = cp.zeros(10,dtype=cp.float32)
-M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+M_ = cp.array(ms_tmp,dtype=cp.float32)
 
 
 

@@ -6,7 +6,7 @@ with open("README.rst", "r") as readme_file:
 
 setup(
     name="gepapy",
-    version="1.1.5",
+    version="1.1.6",
     description="Developing a library with Cuda and Python for solving scheduling problems on GPU",
     long_description=readme,
     author="Jean Carlo Jimenez Giraldo",

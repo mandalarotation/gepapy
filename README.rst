@@ -469,10 +469,10 @@ The following code presents a possible strategy to avoid premature convergence, 
 
 
 
-  T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+  T_ = cp.array(pt_tmp,dtype=cp.float32)
   d_ = cp.zeros(10,dtype=cp.float32)
   w_ = cp.zeros(10,dtype=cp.float32)
-  M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+  M_ = cp.array(ms_tmp,dtype=cp.float32)
 
 
 
@@ -568,10 +568,10 @@ Example using two populations that are mutually supportive, in this case a main 
          [1, 0, 2, 6, 8, 9, 5, 3, 4, 7]]
 
 
-  T_ = cp.array(pt_tmp.values,dtype=cp.float32)
+  T_ = cp.array(pt_tmp,dtype=cp.float32)
   d_ = cp.zeros(10,dtype=cp.float32)
   w_ = cp.zeros(10,dtype=cp.float32)
-  M_ = cp.array(ms_tmp.values -1,dtype=cp.float32)
+  M_ = cp.array(ms_tmp,dtype=cp.float32)
 
 
 
